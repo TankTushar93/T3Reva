@@ -33,7 +33,7 @@ const MoreFeatures = () => {
           return result;
         }
 
-        // 🔹 Extract heading + subtext (id: 883)
+        // Extract heading + subtext (id: 883)
         const headingData = findById(data, 883);
         const bodytext = headingData?.content?.bodytext || "";
 
@@ -45,7 +45,7 @@ const MoreFeatures = () => {
         setHeading(h2Text);
         setSubtext(pText);
 
-        // 🔹 Extract features from multiple sections
+        // Extract features from multiple sections
         const sectionIds = [905, 935, 942];
 
         function extractFeatures(obj) {
@@ -140,7 +140,7 @@ const MoreFeatures = () => {
 
 export default MoreFeatures;
 
-/* 🔹 Add shimmer effect in global CSS */
+/* Add shimmer effect in global CSS */
 <style jsx global>{`
   .shimmer {
     position: relative;

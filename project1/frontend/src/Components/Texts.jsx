@@ -51,7 +51,7 @@ const Texts = () => {
       .catch(err => console.log(err));
   }, []);
 
-  // ✅ If no data, render nothing
+  // If no data, render nothing
   if (!section) {
   return (
     <div className={`px-4 relative flex flex-col ${

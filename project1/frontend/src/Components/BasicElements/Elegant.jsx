@@ -15,12 +15,12 @@ const Elegant = () => {
     fetch("https://t3-reva.t3planet.de/elements/basic-elements/gallery")
       .then((res) => res.json())
       .then((data) => {
-        // ✅ Extract breadcrumbs
+        //  Extract breadcrumbs
         if (data?.breadcrumbs) {
           setBreadcrumbs(data.breadcrumbs);
         }
 
-        // ✅ Extract gallery heading & description
+        //  Extract gallery heading & description
         function findById(obj, id) {
           let result = null;
           function search(o) {
@@ -62,7 +62,7 @@ const Elegant = () => {
   if (loading) {
     return (
       <div className="h-110 w-full bg-gray-100 flex justify-center items-center">
-        <p className="text-gray-500 text-lg">Loading...</p>
+        
       </div>
     );
   }
@@ -93,7 +93,7 @@ const Elegant = () => {
         {galleryData?.description}
       </p>
 
-      {/* ✅ Dynamic Breadcrumbs */}
+      {/*  Dynamic Breadcrumbs */}
       <div
         className="flex flex-wrap justify-center gap-2 sm:gap-3 cursor-pointer mt-8 text-[13px] sm:text-[15px] md:text-[16px]"
         style={{ color: background === 'Dark' ? '#fff' : 'gray' }}

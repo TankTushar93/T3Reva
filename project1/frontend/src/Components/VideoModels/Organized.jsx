@@ -56,7 +56,7 @@ const Organized = () => {
           return result;
         };
 
-        // === Extract text (ID: 1102)
+        // Extract text (ID: 1102)
         const textBlock = findById(json, 1102);
         let subtitle = "",
           title = "",
@@ -69,14 +69,13 @@ const Organized = () => {
           description = tempDiv.querySelector("h6")?.innerText || "";
         }
 
-        // === Extract trust image (ID: 1103)
+        // Extract trust image (ID: 1103)
         const trustBlock = findById(json, 1103);
         const trustImage =
           trustBlock?.content?.gallery?.rows?.["1"]?.columns?.["1"]?.publicUrl || "";
 
-        // === Static video for now (Can also be dynamic if API provides it)
-        const videoImage =
-          "https://t3-reva.t3planet.de/fileadmin/ns_theme_t3reva/video-model/home_mobile_app_video_bg.jpg";
+        
+        const videoImage ="https://t3-reva.t3planet.de/fileadmin/ns_theme_t3reva/video-model/home_mobile_app_video_bg.jpg";
         const videoUrl = "https://www.youtube.com/embed/a6Ct4vL_XZM?mute=1&si=vl9LN_3gziSQVuZC";
 
         setData({ subtitle, title, description, trustImage, videoImage, videoUrl });

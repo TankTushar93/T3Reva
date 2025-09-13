@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSidebar } from "../../context/Sidebarcontext";
 import { lighten } from "polished";
-import { TiTickOutline } from "react-icons/ti";
+
 
 const LeaderSupport = () => {
   const { background } = useSidebar();

@@ -33,7 +33,7 @@ const Fluid = () => {
           return result;
         }
 
-        // id 810 => heading + bodytext
+        // id 810 
         const headingData = findById(data, 810);
         const bodytext = headingData?.content?.bodytext || "";
 
@@ -44,7 +44,7 @@ const Fluid = () => {
 
         setSection({ heading: h2, text: p });
 
-        // id 811 => features
+        // id 811 
         const featureData = findById(data, 811);
         const itemsArray = featureData?.content?.items || [];
         const formattedFeatures = itemsArray.flatMap((block) =>
@@ -57,7 +57,7 @@ const Fluid = () => {
         );
         setFeatures(formattedFeatures);
 
-        // id 809 => images
+        // id 809 
         const photoData = findById(data, 809);
         setImages(photoData?.content?.image || []);
 

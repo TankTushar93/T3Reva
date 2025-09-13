@@ -1,7 +1,7 @@
 import { useSidebar } from "../../context/Sidebarcontext";
 import { useEffect, useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { HexColorPicker } from "react-colorful";
+
 const Sidebar = () => {
 
     const 
@@ -22,29 +22,10 @@ const Sidebar = () => {
      pageStripeVisible, setPageStripeVisible 
     } = useSidebar();
     const col = localStorage.getItem('color')
-    // const [color, setColor] = useState('#4C6FFF');
-    // const [scolor, setScolor] = useState('#61DCDF');
-    // const [textcolor, setTextcolor] = useState('#617798');
-    // const [teriotarycolor, setTeriotarycolor] = useState('#F43FE2');
-    // const [graycolor, setGraycolor] = useState('#CDCBCB');
-    // const [headerMenu, setHeaderMenu] = useState('Without Topbar');
-    // const [footerMenu, setFooterMenu] = useState('Large Footer');
-    // const [fontfamily, setFontfamily] = useState('Work Sans');
-
-    // const [layout, setLayout] = useState('Wide');
-    // const [background, setBackground] = useState('Light');
-    // const [searchVisible, setSearchVisible] = useState(true);
-    // const [languageVisible, setLanguageVisible] = useState(true);
-    // const [pageStripeVisible, setPageStripeVisible] = useState(true);
-
-   
-
+    
     const buttonStyle = (active) =>
         `px-3 py-1.5 rounded text-sm cursor-pointer font-light ${!active ? 'bg-black text-white' : 'bg-white text-black'
         }`;
-
-        
-
 
     const onReset = () =>{
         setColor('#4C6FFF');
@@ -62,11 +43,6 @@ const Sidebar = () => {
         setPageStripeVisible(true);
     }
     
-    
-    // useEffect(()=>{
-    //     localStorage.setItem('color',scolor);
-    // },[scolor])
-
     const onsubmit = () => {
         setColor(color);
         setTextcolor(textcolor);

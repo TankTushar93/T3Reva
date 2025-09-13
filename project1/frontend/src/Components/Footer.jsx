@@ -46,7 +46,7 @@ const Footer = () => {
           return result;
         }
 
-        // ✅ Logo + Text
+        //  Logo + Text
         const headingData = findById(data, 2289);
         const logo =
           headingData?.content?.gallery?.rows[1]?.columns[1]?.publicUrl;
@@ -58,21 +58,21 @@ const Footer = () => {
         const p = tempDiv.querySelector("p")?.innerText || "";
         setSection({ logo, p });
 
-        // ✅ About Menu
+        //  About Menu
         const aboutData = findById(data, 2326);
         setAboutMenu({
           header: aboutData?.content?.header || "About",
           menu: aboutData?.content?.menu || [],
         });
 
-        // ✅ Resources Menu
+        //  Resources Menu
         const resourcesData = findById(data, 2327);
         setResourcesMenu({
           header: resourcesData?.content?.header || "Resources",
           menu: resourcesData?.content?.menu || [],
         });
 
-        // ✅ Newsletter Form
+        //  Newsletter Form
         const newsletterData = findById(data, 2328);
         setNewsletter({
           header: newsletterData?.content?.form_additional?.header || "Newsletter",

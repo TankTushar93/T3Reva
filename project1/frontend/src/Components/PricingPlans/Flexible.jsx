@@ -15,7 +15,7 @@ const Flexible = () => {
     fetch("https://t3-reva.t3planet.de/elements/infographic-elements/pricing-plans")
       .then((res) => res.json())
       .then((data) => {
-        // 1️⃣ Extract dynamic content
+        //  Extract dynamic content
         function findById(obj, id) {
           let result = null;
           function search(o) {
@@ -47,7 +47,7 @@ const Flexible = () => {
 
         setContent({ title: h2, description: p });
 
-        // 2️⃣ Extract breadcrumbs
+        //  Extract breadcrumbs
         setBreadcrumbs(data?.breadcrumbs || []);
         setLoading(false);
       })
