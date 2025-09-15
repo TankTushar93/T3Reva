@@ -15,7 +15,6 @@ const Flexible = () => {
     fetch("https://t3-reva.t3planet.de/elements/infographic-elements/pricing-plans")
       .then((res) => res.json())
       .then((data) => {
-        //  Extract dynamic content
         function findById(obj, id) {
           let result = null;
           function search(o) {
@@ -35,10 +34,8 @@ const Flexible = () => {
           return result;
         }
 
-        // Replace with correct ID from API
         const contentData = findById(data, 1466);
 
-        // Parse HTML to extract <h2> and <p>
         const tempDiv = document.createElement("div");
         tempDiv.innerHTML = contentData?.content?.bodytext || "";
 
@@ -47,7 +44,6 @@ const Flexible = () => {
 
         setContent({ title: h2, description: p });
 
-        //  Extract breadcrumbs
         setBreadcrumbs(data?.breadcrumbs || []);
         setLoading(false);
       })
@@ -59,9 +55,7 @@ const Flexible = () => {
 
   if (loading) {
     return (
-      <div className="h-[440px] bg-gray-100 flex justify-center items-center">
-        
-      </div>
+      <div className="h-[440px] bg-gray-100 flex justify-center items-center"></div>
     );
   }
 
@@ -75,7 +69,7 @@ const Flexible = () => {
       }}
       className="min-h-[440px] w-full flex flex-col justify-center items-center px-4 sm:px-6 md:px-10 text-center"
     >
-      {/* Dynamic Heading */}
+      {/* Heading */}
       <h1
         style={{ color: background === 'Dark' ? '#fff' : col }}
         className="text-[28px] sm:text-[32px] md:text-[39px] mt-10 md:mt-14 font-extrabold leading-tight"
@@ -83,7 +77,7 @@ const Flexible = () => {
         {content.title}
       </h1>
 
-      {/* Dynamic Description */}
+      {/* Description */}
       <p
         style={{ color: background === 'Dark' ? '#fff' : 'gray' }}
         className="text-gray-500 leading-relaxed tracking-wide mx-auto max-w-[740px] text-[15px] sm:text-[16px] md:text-[18px] mt-3 sm:mt-4 px-3"
@@ -91,7 +85,7 @@ const Flexible = () => {
         {content.description}
       </p>
 
-      {/* Dynamic Breadcrumbs */}
+      {/* Breadcrumbs */}
       <div
         style={{ color: background === 'Dark' ? '#fff' : 'gray' }}
         className="flex flex-wrap justify-center gap-1 text-sm sm:text-base cursor-pointer mt-6 sm:mt-8 md:mt-11"

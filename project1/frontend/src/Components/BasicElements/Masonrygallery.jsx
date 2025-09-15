@@ -12,7 +12,6 @@ const Masonrygallery = () => {
     fetch("https://t3-reva.t3planet.de/elements/basic-elements/gallery")
       .then((res) => res.json())
       .then((data) => {
-        // Utility function to search for object by ID
         function findById(obj, id) {
           let result = null;
           function search(o) {
@@ -32,7 +31,7 @@ const Masonrygallery = () => {
           return result;
         }
 
-        // Fetch Masonry Gallery Data by ID (152)
+        //  Masonry Gallery Data 
         const masonryGallery = findById(data, 152);
         if (masonryGallery) {
           setGalleryData({
@@ -51,9 +50,7 @@ const Masonrygallery = () => {
 
   if (loading) {
     return (
-      <div className="w-full h-110 bg-white flex justify-center items-center">
-       
-      </div>
+      <div className="w-full h-110 bg-white flex justify-center items-center"></div>
     );
   }
 
@@ -62,7 +59,7 @@ const Masonrygallery = () => {
       style={{
         backgroundColor: background === "Light" ? "#fff" : col,
       }}
-      className="w-full flex flex-col items-center justify-center mx-auto pt-12 pb-18"
+      className="w-full flex flex-col items-center justify-center mx-auto px-4 pt-12 pb-18"
     >
       {/* Title Section */}
       <h1
@@ -80,11 +77,11 @@ const Masonrygallery = () => {
       </p>
 
       {/* Masonry Layout */}
-      <div className="grid grid-cols-3 grid-rows-2 gap-4 px-26 mt-12 w-full">
+      <div className="grid grid-cols-1  md:grid-cols-3 grid-rows-2 gap-4 px-0 sm:px-10 md:px-17 xl:px-26 mt-12 w-full">
         {galleryData?.images?.length > 0 && (
           <>
             {/* Large Main Image */}
-            <div className="col-span-2 row-span-2 border border-gray-200 overflow-hidden cursor-pointer">
+            <div className="md:col-span-2 md:row-span-2 border border-gray-200 overflow-hidden cursor-pointer">
               <img
                 src={galleryData.images[0].publicUrl}
                 className="h-full w-full object-cover transition-transform duration-500 hover:scale-108"

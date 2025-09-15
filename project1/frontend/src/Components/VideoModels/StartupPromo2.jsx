@@ -22,7 +22,6 @@ const StartupPromo2 = () => {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  // Track mouse movement on video thumbnail
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
@@ -30,7 +29,6 @@ const StartupPromo2 = () => {
     setCursorPos({ x, y });
   };
 
-  // Fetch API Data
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/elements/business-elements/video-modal")
       .then((res) => res.json())
@@ -54,7 +52,6 @@ const StartupPromo2 = () => {
           return result;
         };
 
-        // Video block -> id: 410
         const videoBlock = findById(data, 410);
         if (videoBlock) {
           setVideoData({
@@ -63,7 +60,6 @@ const StartupPromo2 = () => {
           });
         }
 
-        // Text block -> id: 411
         const textBlock = findById(data, 411);
         if (textBlock) {
           const tempDiv = document.createElement("div");
@@ -87,15 +83,12 @@ const StartupPromo2 = () => {
 
   if (loading) {
     return (
-      <div className="w-full flex justify-center items-center py-20 text-gray-500">
-        Loading...
-      </div>
+      <div className="w-full flex justify-center items-center py-20 text-gray-500"></div>
     );
   }
 
   return (
     <div style={{backgroundColor:background === 'Light' ? 'oklch(96.7% 0.003 264.542)' : lighten(0.24,col)}} className="w-full  px-6 sm:px-12 md:px-20 lg:px-24 py-16 flex flex-col lg:flex-row justify-between gap-6 mx-auto">
-      {/* Left: Video Thumbnail */}
       <div className="w-full lg:w-1/2 mb-8 lg:mb-0 flex justify-center">
         <div
           className="relative w-full max-w-2xl"
@@ -106,14 +99,13 @@ const StartupPromo2 = () => {
             setCursorPos({ x: 0, y: 0 }); // Reset to center
           }}
         >
-          {/* Thumbnail Image */}
+
           <img
             src={videoData.image}
             alt="Video thumbnail"
             className="w-full h-auto cursor-pointer object-cover "
           />
 
-          {/* Play Button */}
           <div className="absolute  inset-0 flex items-center justify-center pointer-events-none">
             <button
               onClick={openModal} 
@@ -138,7 +130,6 @@ const StartupPromo2 = () => {
         </div>
       </div>
 
-      {/* Right: Text Content */}
       <div className="w-full lg:w-1/2 mt-4 text-center lg:text-left">
         <h1
           style={{ color: background === "Dark" ? "#fff" : col }}
@@ -148,7 +139,6 @@ const StartupPromo2 = () => {
           {textData.title.substring(26)}  
         </h1>
 
-        {/* Subheading */}
         <p
           style={{ color: background === "Dark" ? "#fff" : "gray" }}
           className="text-gray-500 leading-relaxed tracking-wide max-w-[740px] text-[15px] sm:text-[16px] md:text-[18px] mt-3 sm:mt-8"
@@ -156,7 +146,6 @@ const StartupPromo2 = () => {
          {textData.description}
         </p>
 
-        {/* View More Button */}
         <button
           onClick={openModal}
           className="mt-8 cursor-pointer ml-0 sm:mt-10 md:mt-7 px-6 sm:px-10 py-4 text-sm sm:text-md font-semibold text-white bg-gradient-to-r from-pink-500 to-blue-600 flex items-center justify-center gap-2 group mx-auto lg:mx-0"
@@ -176,7 +165,7 @@ const StartupPromo2 = () => {
             onClick={(e) => e.stopPropagation()}
             className="relative w-[90%] md:w-[70%] mt-24 lg:w-[70%] bg-transparent rounded-lg overflow-hidden shadow-lg"
           >
-            {/* Close Button */}
+    
             <button
               onClick={closeModal}
               className="absolute top-3 right-3 text-white text-2xl font-bold z-50 hover:text-gray-300"
@@ -184,7 +173,6 @@ const StartupPromo2 = () => {
               ✕
             </button>
 
-            {/* Video Iframe */}
             <iframe
               className="w-full h-[250px] sm:h-[350px] md:h-[400px] lg:h-[600px]"
               src="https://www.youtube.com/embed/a6Ct4vL_XZM?autoplay=1&mute=1&si=vl9LN_3gziSQVuZC"

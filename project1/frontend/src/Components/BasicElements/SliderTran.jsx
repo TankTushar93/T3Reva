@@ -15,12 +15,10 @@ const SliderTran = () => {
   const [sliderData, setSliderData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch slider data
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/elements/basic-elements/gallery")
       .then((res) => res.json())
       .then((data) => {
-        // Utility function to find a node by ID
         const findById = (obj, id) => {
           let result = null;
           const search = (o) => {
@@ -40,7 +38,7 @@ const SliderTran = () => {
           return result;
         };
 
-        // Fetch slider gallery with ID 150
+        // slider gallery 
         const sliderGalleryContent = findById(data, 150);
 
         if (sliderGalleryContent) {
@@ -62,9 +60,7 @@ const SliderTran = () => {
 
   if (loading) {
     return (
-      <div className="w-full h-64 bg-gray-100 flex justify-center items-center">
-       
-      </div>
+      <div className="w-full h-64 bg-gray-100 flex justify-center items-center"></div>
     );
   }
 
@@ -104,8 +100,8 @@ const SliderTran = () => {
         <Swiper
           modules={[Navigation, Pagination]}
           spaceBetween={30}
-          slidesPerView={1} // Single slide per view
-          centeredSlides={true} // Center active slide
+          slidesPerView={1}
+          centeredSlides={true}
           loop={true}
           navigation
           pagination={{ clickable: true }}
@@ -116,7 +112,7 @@ const SliderTran = () => {
               key={index}
               className="flex items-center justify-center transition-transform duration-500"
             >
-              <div className="relative w-[80%]">
+              <div className="relative w-screen xl:w-[80%]">
                 <img
                   src={img}
                   alt={`Slide ${index}`}

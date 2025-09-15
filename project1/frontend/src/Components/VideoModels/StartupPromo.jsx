@@ -17,7 +17,6 @@ const StartupPromo = () => {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  // Track mouse movement over the image
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
@@ -25,12 +24,10 @@ const StartupPromo = () => {
     setCursorPos({ x, y });
   };
 
-  // Fetch dynamic data
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/elements/business-elements/video-modal")
       .then((res) => res.json())
       .then((data) => {
-        // Utility to find nested object by ID
         const findById = (obj, id) => {
           let result = null;
           function search(o) {
@@ -50,7 +47,6 @@ const StartupPromo = () => {
           return result;
         };
 
-        // Fetch Video block (id: 2558)
         const videoBlock = findById(data, 2558);
         if (videoBlock) {
           setVideoData({
@@ -59,7 +55,6 @@ const StartupPromo = () => {
           });
         }
 
-        // Fetch Text block (id: 1106)
         const textBlock = findById(data, 1106);
         if (textBlock) {
           const tempDiv = document.createElement("div");
@@ -82,9 +77,7 @@ const StartupPromo = () => {
 
   if (loading) {
     return (
-      <div className="w-full flex justify-center items-center py-20 text-gray-500">
-        Loading...
-      </div>
+      <div className="w-full flex justify-center items-center py-20 text-gray-500"></div>
     );
   }
 
@@ -93,7 +86,7 @@ const StartupPromo = () => {
       style={{ backgroundColor: background === "Light" ? "#fff" : col }}
       className="w-full px-6 sm:px-12 md:px-20 lg:px-24 py-16 flex flex-col lg:flex-row justify-between gap-6 mx-auto"
     >
-      {/* Left: Video Thumbnail */}
+
       <div className="w-full lg:w-1/2 mb-8 lg:mb-0 flex justify-center">
         <div
           className="relative w-full max-w-2xl"
@@ -104,14 +97,12 @@ const StartupPromo = () => {
             setCursorPos({ x: 0, y: 0 });
           }}
         >
-          {/* Dynamic Thumbnail */}
           <img
             src={videoData.image}
             alt="Video thumbnail"
             className="w-full h-auto  cursor-pointer object-cover"
           />
 
-          {/* Play Button */}
           <div className="absolute  inset-0 flex items-center justify-center pointer-events-none">
             <button
               onClick={openModal} 
@@ -136,7 +127,6 @@ const StartupPromo = () => {
         </div>
       </div>  
 
-      {/* Right: Dynamic Text Content */}
       <div className="w-full lg:w-1/2 mt-4 text-center lg:text-left">
         <h1
           style={{ color: background === "Dark" ? "#fff" : col }}
@@ -153,7 +143,6 @@ const StartupPromo = () => {
           {textData.description}
         </p>
 
-        {/* Dynamic Button */}
         <a href={textData.buttonLink}>
           <button
             className="mt-8 cursor-pointer ml-0 sm:mt-10 md:mt-7 px-6 sm:px-10 py-4 text-sm sm:text-md font-semibold text-white bg-gradient-to-r from-pink-500 to-blue-600 flex items-center justify-center gap-2 group mx-auto lg:mx-0"
@@ -164,7 +153,7 @@ const StartupPromo = () => {
         </a>
       </div>
 
-      {/* Video Modal */}
+      
       {isOpen && (
         <div
           onClick={closeModal}
@@ -174,7 +163,6 @@ const StartupPromo = () => {
             onClick={(e) => e.stopPropagation()}
             className="relative w-[90%] md:w-[70%] mt-24 lg:w-[70%] bg-transparent rounded-lg overflow-hidden shadow-lg"
           >
-            {/* Close Button */}
             <button
               onClick={closeModal}
               className="absolute top-3 right-3 text-white text-2xl font-bold z-50 hover:text-gray-300"
@@ -182,7 +170,6 @@ const StartupPromo = () => {
               ✕
             </button>
 
-            {/* Dynamic Video */}
             <iframe
               className="w-full h-[250px] sm:h-[350px] md:h-[400px] lg:h-[600px]"
               src={videoData.video}

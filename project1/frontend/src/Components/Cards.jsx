@@ -45,7 +45,7 @@ const Cards = () => {
     <div style={{backgroundColor:background === 'Light' ? '#fff' : col}}
       className={`h-full relative  grid pb-12 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 lg:gap-4 px-4 py-4 w-full`}
     >
-      {/* If no cards are loaded yet, render empty container */}
+    
       {cards.length === 0 ? (
         <div className="col-span-full w-full h-screen"></div>
       ) : (

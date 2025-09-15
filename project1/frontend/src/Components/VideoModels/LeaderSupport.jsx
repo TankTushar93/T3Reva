@@ -31,7 +31,6 @@ const LeaderSupport = () => {
     setCursorPos({ x, y });
   };
 
-  // Fetch Data
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/elements/business-elements/video-modal")
       .then((res) => res.json())
@@ -55,7 +54,6 @@ const LeaderSupport = () => {
           return result;
         };
 
-        // Video Block
         const videoBlock = findById(data, 506);
         if (videoBlock) {
           setVideoData({
@@ -64,7 +62,6 @@ const LeaderSupport = () => {
           });
         }
 
-        // Text Block
         const textBlock = findById(data, 507);
         if (textBlock) {
           const tempDiv = document.createElement("div");
@@ -73,7 +70,6 @@ const LeaderSupport = () => {
           const subtitle = tempDiv.querySelector("span")?.innerText || "";
           const title = tempDiv.querySelector("h2")?.innerText || "";
 
-          // Extract list items
           const listItems = Array.from(tempDiv.querySelectorAll("p"))
             .map((p) => p.innerText)
             .filter((text) => text.includes("✔"));
@@ -95,9 +91,7 @@ const LeaderSupport = () => {
 
   if (loading) {
     return (
-      <div className="w-full flex justify-center items-center py-20 text-gray-500">
-        Loading...
-      </div>
+      <div className="w-full flex justify-center items-center py-20 text-gray-500"></div>
     );
   }
 
@@ -109,7 +103,6 @@ const LeaderSupport = () => {
       }}
       className="w-full min-h-screen px-3 py-12 flex flex-col lg:flex-row items-center justify-between"
     >
-      {/* Left: Video Section */}
       <div className="w-full lg:w-1/2 h-138 mb-8 lg:mb-0 flex">
         <div
           className="relative w-full max-w-2xl"
@@ -149,7 +142,6 @@ const LeaderSupport = () => {
         </div>
       </div>
 
-      {/* Right: Text Section */}
       <div className="w-full lg:w-1/2 h-full py-12 lg:py-24 pl-6 lg:pl-34 text-center lg:text-left">
         <h2 className="text-2xl sm:text-[18px] text-blue-500 mb-4">
           --- {textData.subtitle}
@@ -177,7 +169,6 @@ const LeaderSupport = () => {
         </a>
       </div>
 
-      {/* Video Modal */}
       {isOpen && (
         <div
           onClick={closeModal}

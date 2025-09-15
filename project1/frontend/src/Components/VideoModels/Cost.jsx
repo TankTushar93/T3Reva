@@ -13,12 +13,10 @@ const Cost = () => {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  // Fetch dynamic data
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/elements/business-elements/video-modal") // Replace with correct endpoint
       .then((res) => res.json())
       .then((data) => {
-        // Utility function to find an object by ID
         const findById = (obj, id) => {
           let result = null;
           function search(o) {
@@ -38,13 +36,11 @@ const Cost = () => {
           return result;
         };
 
-        // Get Heading Text (id: 1087)
         const textBlock = findById(data, 1087);
         if (textBlock) {
           setHeading(textBlock.content.bodytext);
         }
 
-        // Get Video URL (id: 417)
         const videoBlock = findById(data, 417);
         if (videoBlock) {
           setVideoUrl(videoBlock.content.video?.[0]?.publicUrl || "");
@@ -79,7 +75,7 @@ const Cost = () => {
       style={{ backgroundColor: background === "Light" ? "#fff" : col }}
       className="w-full px-6 sm:px-12 md:px-20 lg:px-24 py-16 pb-24 flex flex-col justify-center items-center text-center gap-6 mx-auto"
     >
-      {/* Dynamic Heading */}
+      {/* Heading */}
       <div className="w-full max-w-250 mt-4 text-center "> 
         <h1 style={{color: background === 'Dark' ? '#fff' : col}}
          className={`text-[36px] z-10 font-extrabold `} >
@@ -89,10 +85,9 @@ const Cost = () => {
           {getSubstringBetween(heading, "<span class=\"gradient-color h1\">", "</span><span class=\"h1\"> ")}
           </span>
           {' '} {getSubstringBetween(heading, "</span><span class=\"h1\">", "</span></h2>")}
-         </h1> {/* Subheading */}
+         </h1> 
          </div>
 
-      {/* Play Button */}
       <div className="w-full mb-8 mt-4 flex justify-center">
         <div className="flex items-center justify-center pointer-events-none">
           <button
@@ -111,7 +106,6 @@ const Cost = () => {
         </div>
       </div>
 
-      {/* Modal for Video */}
       {isOpen && (
         <div
           onClick={closeModal}
@@ -121,7 +115,7 @@ const Cost = () => {
             onClick={(e) => e.stopPropagation()}
             className="relative w-[90%] md:w-[70%] mt-24 lg:w-[70%] rounded-lg overflow-hidden shadow-lg"
           >
-            {/* Close Button */}
+
             <button
               onClick={closeModal}
               className="absolute top-3 right-3 text-white text-2xl font-bold z-50 hover:text-gray-300"
@@ -129,7 +123,6 @@ const Cost = () => {
               ✕
             </button>
 
-            {/* Dynamic Video */}
             <iframe
               className="w-full h-[250px] sm:h-[350px] md:h-[400px] lg:h-[600px]"
               src={videoUrl}

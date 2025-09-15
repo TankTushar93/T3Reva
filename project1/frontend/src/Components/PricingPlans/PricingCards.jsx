@@ -9,14 +9,17 @@ const PricingCards = () => {
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Tooltip state
-  const [tooltip, setTooltip] = useState({ visible: false, text: "", x: 0, y: 0 });
+  const [tooltip, setTooltip] = useState({
+    visible: false,
+    text: "",
+    x: 0,
+    y: 0,
+  });
 
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/elements/infographic-elements/pricing-plans")
       .then((res) => res.json())
       .then((data) => {
-        // Search nested object for id=353
         function findById(obj, id) {
           let result = null;
           function search(o) {
@@ -66,7 +69,6 @@ const PricingCards = () => {
   if (loading) {
     return (
       <div className="h-[400px] w-full flex justify-center items-center bg-gray-500">
-        
       </div>
     );
   }
@@ -74,71 +76,59 @@ const PricingCards = () => {
   return (
     <div
       style={{
-        backgroundColor:
-          background === "Light" ? "#fff" :  col,
+        backgroundColor: background === "Light" ? "#fff" : col,
       }}
-      className="w-full flex flex-col items-center justify-center mx-auto py-24 pt-10 relative"
+      className="w-full flex flex-col items-center justify-center mx-auto px-4 py-24 pt-10 relative"
     >
       {/* Title */}
       <h1
         style={{ color: background === "Dark" ? "#fff" : col }}
-        className="text-[38px] mt-12 font-extrabold"
+        className="text-[28px] sm:text-[32px] md:text-[38px] mt-12 font-extrabold text-center"
       >
         Classic pricing plans on 3 columns
       </h1>
 
-      {/* Plans */}
-      <div className="flex mt-14  relative">
+      <div
+        className="
+          flex flex-col sm:flex-row flex-wrap 
+          justify-center gap-6 sm:gap-8 lg:gap-0 mt-14 w-full px-4
+        "
+      >
         {plans.map((plan, index) => (
           <div
             key={index}
             style={{
-              backgroundColor: plan.title === "Extended" ? 'oklch(96.7% 0.003 264.542)' : "#fff",
+              backgroundColor:
+                plan.title === "Extended" ? "oklch(96.7% 0.003 264.542)" : "#fff",
             }}
-            className={`${
-              plan.title === "Extended" ? "px-12" : "px-4"
-            } relative w-auto py-18 text-center border border-gray-200 transition-all duration-300 ${
-              plan.title === "Extended" ? "scale-105 z-10" : ""
-            }`}
+            className={`
+              relative 
+              w-full sm:w-[320px] lg:w-[360px] 
+              py-10 px-6 sm:px-8 text-center border border-gray-200 
+              transition-all duration-300 flex flex-col items-center
+              ${
+                plan.title === "Extended" ? "lg:scale-105 z-10 sm:px-12" : ""
+              }
+            `}
           >
-            {/* Plan Title */}
-            <h2
-              style={{ color: col }}
-              className="text-3xl font-bold mb-8"
-            >
+
+            <h2 style={{ color: col }} className="text-2xl sm:text-3xl font-bold mb-6">
               {plan.title}
             </h2>
 
-            {/* Price */}
-            <p
-              style={{ color:  col }}
-              className="text-4xl"
-            >
-              ${" "}
-              <span className="text-4xl font-bold">
+            <p style={{ color: col }} className="text-3xl sm:text-4xl">
+              $
+              <span className="font-bold">
                 {plan.discount === "1" ? plan.discountPrice : plan.price}
               </span>
-              <span
-                style={{ color:  "gray" }}
-                className="text-lg"
-              >
-                /{plan.period}
-              </span>
+              <span className="text-gray-500 text-lg">/{plan.period}</span>
             </p>
 
-            {/* Description */}
-            <p
-              className={`mt-4 text-lg ${
-                "text-gray-500"
-              }`}
-            >
-              {plan.description}
-            </p>
+            <p className="mt-4 text-base sm:text-lg text-gray-500">{plan.description}</p>
 
-            {/* Features */}
             <ul
-              style={{ color:  col }}
-              className="mt-6 space-y-2 text-lg"
+              style={{ color: col }}
+              className="mt-6 space-y-2 text-base sm:text-lg text-gray-700"
             >
               {plan.addItem.map((feature, idx) => (
                 <li
@@ -156,9 +146,8 @@ const PricingCards = () => {
               ))}
             </ul>
 
-            {/* Button */}
             <button
-              className={`mt-8 px-8 py-2.5 cursor-pointer font-medium transition-colors duration-300 ${
+              className={`mt-8 w-full sm:w-auto px-6 py-2.5 cursor-pointer font-medium transition-colors duration-300 ${
                 plan.title === "Extended"
                   ? "bg-blue-500 text-white hover:bg-pink-400"
                   : "border border-blue-500 text-blue-500 hover:border-pink-400 hover:bg-pink-400 hover:text-white"
@@ -170,7 +159,6 @@ const PricingCards = () => {
         ))}
       </div>
 
-      {/* Tooltip */}
       {tooltip.visible && (
         <div
           className="absolute px-4 py-2 bg-gray-200 text-gray-700 text-sm rounded-md shadow-lg"

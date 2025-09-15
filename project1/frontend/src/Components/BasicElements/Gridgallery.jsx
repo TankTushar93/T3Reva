@@ -9,12 +9,10 @@ const Gridgallery = () => {
   const [gridData, setGridData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch Grid Gallery data
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/elements/basic-elements/gallery")
       .then((res) => res.json())
       .then((data) => {
-        // Utility function to search by ID
         const findById = (obj, id) => {
           let result = null;
           const search = (o) => {
@@ -34,7 +32,7 @@ const Gridgallery = () => {
           return result;
         };
 
-        // Find Grid Gallery data with id = 151
+        // data with id = 151
         const gridGalleryContent = findById(data, 151);
 
         if (gridGalleryContent) {
@@ -58,9 +56,7 @@ const Gridgallery = () => {
 
   if (loading) {
     return (
-      <div className="w-full bg-white h-64 flex justify-center items-center">
-       
-      </div>
+      <div className="w-full bg-white h-64 flex justify-center items-center"></div>
     );
   }
 
@@ -72,7 +68,7 @@ const Gridgallery = () => {
     );
   }
   return (
-     <div style={{backgroundColor:background === 'Light' ? '#fff' : col}} className="w-full border-b border-gray-200 flex flex-col items-center justify-center mx-auto pt-10 pb-18">
+     <div style={{backgroundColor:background === 'Light' ? '#fff' : col}} className="w-full border-b border-gray-200 flex flex-col items-center justify-center mx-auto px-4 pt-10 pb-18">
       {/* Title Section */}
       <h1 style={{color:background === 'Dark' ? '#fff' : col}} className="text-[32px] mt-10 font-bold ">
        {gridData.title}
@@ -83,9 +79,9 @@ const Gridgallery = () => {
       </p>
 
       {/* Swiper Slider */}
-      <div className='grid grid-cols-3 px-26 gap-4 mt-12'>
+      <div className='grid grid-cols-1 md:grid-cols-3 px-0 sm:px-10 md:px-17 lg:px-26 gap-4 mt-12'>
         {gridData.images.map((img, index) => (
-            <div key={index} className='border cursor-pointer border-gray-200  overflow-hidden'>
+            <div key={index} className='border cursor-pointer border-gray-200 w-full overflow-hidden'>
                 <img src={img.url} className='h-full w-full transition-transform duration-500 hover:scale-108' alt={img.alt} />
             </div>
              ))}

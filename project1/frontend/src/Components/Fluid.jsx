@@ -110,7 +110,6 @@ const Fluid = () => {
               </p>
           
 
-          {/* Feature Boxes */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex justify-center lg:justify-between gap-6 mt-10 sm:mt-16 w-full">
             { features.map((feature) => (
                   <div
@@ -133,7 +132,6 @@ const Fluid = () => {
           </div>
         </div>
 
-        {/* Right Image */}
         <div className="relative w-full lg:w-1/2 flex justify-center">
           <div className="relative w-full mt-2 lg:mt-0 lg:mb-24 max-w-lg lg:max-w-lg">
             

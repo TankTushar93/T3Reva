@@ -100,7 +100,6 @@ const Editing = () => {
             {getSubstringBetween(pageData?.text, 'editing', 'We')}
           </h1>
 
-          {/* Subheading */}
           <p
             className={`z-10 mx-auto leading-relaxed tracking-wide max-w-130 text-[18px] mt-4 
                         ${background === "Light" ? "text-gray-600" : "text-white"}`}

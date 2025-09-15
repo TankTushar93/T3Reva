@@ -10,7 +10,6 @@ const Hero = () => {
   const [index, setIndex] = useState(0);
   const [animationKey, setAnimationKey] = useState(0);
 
-  // Fetch hero section data
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/")
       .then((res) => res.json())
@@ -43,7 +42,7 @@ const Hero = () => {
       .catch(err => console.log(err));
   }, []);
 
-  // Rotator text animation
+
   useEffect(() => {
     if (!heroData || !heroData.rotatorWords || heroData.rotatorWords.length === 0) return;
     const interval = setInterval(() => {
@@ -53,7 +52,6 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, [heroData]);
 
-  // If no data yet, render nothing
  if (!heroData) {
   return (
     <div style={{ backgroundColor: col }} className='w-full h-screen'></div>
@@ -64,7 +62,6 @@ const Hero = () => {
     <div style={{ backgroundColor: col }} className='w-full'>
       <div className='flex flex-col lg:flex-row gap-6 lg:gap-8 px-4 sm:px-8 md:px-16 lg:px-[85px] py-42 sm:py-40 md:py-36 lg:py-[156px] xl:py-[136px] items-center'>
 
-        {/* Text Content */}
         <div className='w-full lg:w-1/2 text-center lg:text-left'>
           <div className="relative text-white">
             <h1 className="text-4xl text-left sm:text-5xl md:text-4xl lg:text-5xl xl:text-7xl font-bold relative z-10">
@@ -97,7 +94,6 @@ const Hero = () => {
           </button>
         </div>
 
-        {/* Image */}
         <div className='w-full lg:w-1/2 mt-8 lg:mt-0'>
           <img
             src={heroData.imageUrl}

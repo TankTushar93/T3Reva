@@ -112,9 +112,9 @@ const FAQ = () => {
 
                   {/* Toggle Button */}
                   <button className="relative flex items-center justify-center w-6 h-6">
-                    <span className="absolute w-3 h-[3px] bg-gray-500 transition-all"></span>
+                    <span className="absolute cursor-pointer w-3 h-[3px] bg-gray-500 transition-all"></span>
                     <span
-                      className={`absolute w-[3px] h-3 bg-gray-500 transition-transform duration-300 ${open === index ? "-rotate-90" : ""
+                      className={`absolute cursor-pointer w-[3px] h-3 bg-gray-500 transition-transform duration-300 ${open === index ? "-rotate-90" : ""
                         }`}
                     ></span>
                   </button>
@@ -158,9 +158,9 @@ const FAQ = () => {
 
                   {/* Toggle Button */}
                   <button className="relative flex items-center justify-center w-6 h-6">
-                    <span className="absolute w-3 h-[3px] bg-gray-500 transition-all"></span>
+                    <span className="absolute w-3 h-[3px] cursor-pointer bg-gray-500 transition-all"></span>
                     <span
-                      className={`absolute w-[3px] h-3 bg-gray-500 transition-transform duration-300 ${open === actualIndex ? "-rotate-90" : ""
+                      className={`absolute w-[3px] h-3 cursor-pointer bg-gray-500 transition-transform duration-300 ${open === actualIndex ? "-rotate-90" : ""
                         }`}
                     ></span>
                   </button>

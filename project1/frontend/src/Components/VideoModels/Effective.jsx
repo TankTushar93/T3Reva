@@ -22,7 +22,6 @@ const Effective = () => {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  // Track mouse movement for play button
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
@@ -53,7 +52,6 @@ const Effective = () => {
           return result;
         };
 
-        // Extract text content
         const textBlock = findById(json, 1090);
         let subtitle = "",
           title = "",
@@ -66,12 +64,10 @@ const Effective = () => {
           description = tempDiv.querySelector("h6")?.innerText || "";
         }
 
-        // Extract trust image
         const trustBlock = findById(json, 1092);
         const trustImage =
           trustBlock?.content?.gallery?.rows?.["1"]?.columns?.["1"]?.publicUrl || "";
 
-        // Extract video content
         const videoBlock = findById(json, 1089);
         const videoImage = videoBlock?.content?.image?.[0]?.publicUrl || "";
         const videoUrl = videoBlock?.content?.video?.[0]?.publicUrl || "";
@@ -105,7 +101,6 @@ const Effective = () => {
       style={{ backgroundColor: background === "Light" ? "#fff" : col }}
       className="w-full min-h-screen px-3 py-12 flex flex-col gap-6 lg:flex-row items-center justify-between"
     >
-      {/* Text Section */}
       <div className="w-full lg:w-1/2 h-full py-24 pl-6 lg:pl-24 text-center lg:text-left">
         <h2 className="text-2xl sm:text-[18px] text-blue-500 mb-4">
           {data.subtitle}
@@ -132,7 +127,6 @@ const Effective = () => {
         )}
       </div>
 
-      {/* Video Section */}
       <div className="w-full lg:w-1/2 h-138 mb-8 lg:mb-0 flex">
         <div
           className="relative w-full max-w-2xl"
@@ -173,7 +167,6 @@ const Effective = () => {
         </div>
       </div>
 
-      {/* Video Modal */}
       {isOpen && (
         <div
           onClick={closeModal}

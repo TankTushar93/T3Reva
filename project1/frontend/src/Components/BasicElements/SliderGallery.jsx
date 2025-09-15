@@ -4,7 +4,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "./slider.css"; 
+import "./slider.css";
 import { useSidebar } from "../../context/Sidebarcontext";
 
 const SliderGallery = () => {
@@ -14,12 +14,10 @@ const SliderGallery = () => {
   const [sliderData, setSliderData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch data from API
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/elements/basic-elements/gallery")
       .then((res) => res.json())
       .then((data) => {
-        // Utility function to find by ID
         const findById = (obj, id) => {
           let result = null;
           const search = (o) => {
@@ -39,7 +37,7 @@ const SliderGallery = () => {
           return result;
         };
 
-        // Slider Gallery ID (from your JSON data: id = 149)
+        // Slider Gallery 
         const sliderGalleryContent = findById(data, 149);
 
         if (sliderGalleryContent) {
@@ -61,9 +59,7 @@ const SliderGallery = () => {
 
   if (loading) {
     return (
-      <div className="w-full bg-white flex justify-center items-center h-60">
-        
-      </div>
+      <div className="w-full bg-white flex justify-center items-center h-60"></div>
     );
   }
 
@@ -99,20 +95,30 @@ const SliderGallery = () => {
       <div className="relative h-full mt-8 w-full">
         <Swiper
           modules={[Navigation, Pagination]}
-          spaceBetween={30}
-          slidesPerView={1.4} // Show side images partially
-          centeredSlides={true} // Center the active slide
+          spaceBetween={30} 
+          centeredSlides={true} 
           loop={true}
           navigation
           pagination={{ clickable: true }}
           className="slider-container"
+          breakpoints={{
+            0: {
+              slidesPerView: 1, 
+            },
+            994: {
+              slidesPerView: 1.5,
+            },
+            1280: {
+              slidesPerView: 1.4, 
+            },
+          }}
         >
           {sliderData.images.map((img, index) => (
             <SwiperSlide
               key={index}
-              className="flex items-center justify-center pl-18 transition-transform duration-500"
+              className="flex items-center justify-center min-[994px]:ml-3.5 lg:ml-2 xl:ml-0 lg:pl-18 transition-transform duration-500"
             >
-              <div className="relative w-[95%]">
+              <div className="relative w-screen min-[994px]:w-[85%]  xl:w-[95%]">
                 <img
                   src={img}
                   alt={`Slide ${index}`}

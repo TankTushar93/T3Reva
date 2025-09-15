@@ -17,7 +17,6 @@ const StartupPromo3 = () => {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  // Track mouse movement
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
@@ -25,7 +24,6 @@ const StartupPromo3 = () => {
     setCursorPos({ x, y });
   };
 
-  // Fetch data dynamically
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/elements/business-elements/video-modal")
       .then((res) => res.json())
@@ -49,7 +47,6 @@ const StartupPromo3 = () => {
           return result;
         };
 
-        // Video block id: 488
         const videoBlock = findById(data, 488);
         if (videoBlock) {
           setVideoData({
@@ -58,7 +55,6 @@ const StartupPromo3 = () => {
           });
         }
 
-        // Text block id: 489
         const textBlock = findById(data, 489);
         if (textBlock) {
           const tempDiv = document.createElement("div");
@@ -88,7 +84,7 @@ const StartupPromo3 = () => {
       style={{ backgroundColor: col }}
       className="w-full px-6 sm:px-12 md:px-20 lg:px-24 py-16 flex flex-col lg:flex-row justify-between gap-6 mx-auto"
     >
-      {/* Left: Video Thumbnail */}
+ 
       <div className="w-full lg:w-1/2 mb-8 lg:mb-0 flex justify-center">
         <div
           className="relative w-full max-w-2xl"
@@ -105,7 +101,6 @@ const StartupPromo3 = () => {
             className="w-full h-auto cursor-pointer object-cover"
           />
 
-          {/* Play Button */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
            <button
               onClick={openModal} 
@@ -130,7 +125,6 @@ const StartupPromo3 = () => {
         </div>
       </div>
 
-      {/* Right: Text Content */}
       <div className="w-full lg:w-1/2 mt-13 text-center lg:text-left">
         <h1 style={{ color: "#fff" }} className="text-[28px] sm:text-[32px] md:text-[32px] font-semibold leading-tight">
           {textData.title.substring(0,24)}<br/>

@@ -15,7 +15,6 @@ const Modern3 = () => {
     fetch("https://t3-reva.t3planet.de/elements/infographic-elements/pricing-plans")
       .then((res) => res.json())
       .then((data) => {
-        // Utility function to search nested objects by ID
         function findById(obj, id) {
           let result = null;
           function search(o) {
@@ -35,13 +34,11 @@ const Modern3 = () => {
           return result;
         }
 
-        // Fetch the block with id 352 (your JSON block)
         const pricingData = findById(data, 352);
 
         if (pricingData) {
           setTitle(pricingData.content?.header || "Modern pricing plans");
 
-          // Extract plans dynamically
           setPlans(pricingData.content?.pricingPlans || []);
         }
         setLoading(false);
@@ -54,9 +51,7 @@ const Modern3 = () => {
 
   if (loading) {
     return (
-      <div className="h-[400px] bg-gray-100 w-full flex justify-center items-center">
-       
-      </div>
+      <div className="h-[400px] bg-gray-100 w-full flex justify-center items-center"></div>
     );
   }
 
@@ -65,7 +60,7 @@ const Modern3 = () => {
       style={{ backgroundColor: background === "Light" ? "oklch(96.7% 0.003 264.542)" : lighten(0.24, col) }}
       className="w-full flex flex-col items-center justify-center px-6 lg:mx-auto pt-12 pb-34"
     >
-      {/* Dynamic Title */}
+      {/* Title */}
       <h1
         style={{ color: background === "Dark" ? "#fff" : col }}
         className="text-[38px] text-center mt-10 font-extrabold"
@@ -73,32 +68,28 @@ const Modern3 = () => {
         {title}
       </h1>
 
-      {/* Pricing Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-1 items-center justify-center w-full gap-19 lg:gap-6 xl:gap-10 px-4 xl:px-24 py-12">
+      {/* Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-1 items-center justify-center w-full gap-24 lg:gap-6 xl:gap-10 px-4 xl:px-24 py-12">
         {plans.map((plan, index) => (
-          <div key={index} className="relative items-center justify-center">
+          <div key={index} className="relative flex items-center  w-full lg:w-80 xl:w-full justify-center">
             <div className="h-auto w-92 relative px-10 py-10 z-10 bg-white ">
-              {/* Discount Price */}
+             
               <p style={{ color: col }} className="text-4xl inline font-bold">
                 ${plan.discount === "1" ? plan.discountPrice : plan.price}
               </p>
               <span className="text-lg text-gray-500 inline">/{plan.period}</span>
 
-              {/* Title */}
               <h1 style={{ color: col }} className="mt-5 font-extrabold text-2xl">
                 {plan.title}
               </h1>
 
-              {/* Description */}
               <p className="mt-5 text-lg text-gray-500">{plan.description}</p>
 
               <hr className="mt-6 text-gray-200" />
 
-              {/* Features */}
               <div className="pt-4">
                 {plan.addItem?.map((item, idx) => (
                   <div key={idx} className="mt-2 flex gap-3 items-center">
-                    {/* Dynamic Icon */}
                     {item.icon === "1" ? (
                       <svg
                         stroke="currentColor"
@@ -128,12 +119,11 @@ const Modern3 = () => {
               </div>
             </div>
 
-            {/* Background Accent and Button */}
             <div
               style={{
                 backgroundColor: plan.title === "Professional" ? col : "oklch(96.7% 0.003 264.542)",
               }}
-              className={`absolute z-0 inset-0 w-85 left-14 ${
+              className={`absolute z-0 flex items-center justify-center w-74 sm:w-92  min-[773px]:w-75 min-[817px]:w-79 min-[868px]:w-86 min-[917px]:w-92 min-[1002px]:w-92 lg:w-80 xl:w-85  lg:left-0 xl:left-18 ${
                 plan.title === "Professional" ? "top-14 h-120" : "top-10 h-124"
               } `}
             >

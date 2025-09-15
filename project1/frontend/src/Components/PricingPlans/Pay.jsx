@@ -5,16 +5,14 @@ const Pay = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem("color");
 
-  const [headerContent, setHeaderContent] = useState({ heading: "", paragraph: "" }); // for id: 610
-  const [plans, setPlans] = useState([]); // for id: 611
+  const [headerContent, setHeaderContent] = useState({ heading: "", paragraph: "" });
+  const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch pricing data
     fetch("https://t3-reva.t3planet.de/elements/infographic-elements/pricing-plans")
       .then((res) => res.json())
       .then((data) => {
-        // Helper function to find any block by id
         const findById = (obj, id) => {
           let result = null;
           function search(o) {
@@ -34,7 +32,6 @@ const Pay = () => {
           return result;
         };
 
-        /** === Extract Header Text (id: 610) === */
         const headerBlock = findById(data, 610);
         if (headerBlock) {
           const tempDiv = document.createElement("div");
@@ -46,7 +43,6 @@ const Pay = () => {
           setHeaderContent({ heading, paragraph });
         }
 
-        /** === Extract Pricing Plans (id: 611) === */
         const pricingBlock = findById(data, 611);
         if (pricingBlock) {
           setPlans(pricingBlock.content?.pricingPlans || []);
@@ -62,104 +58,95 @@ const Pay = () => {
 
   if (loading) {
     return (
-      <div className="w-full h-[400px] flex justify-center items-center bg-gray-500">
-       
-      </div>
+      <div className="w-full h-[400px] flex justify-center items-center bg-gray-500">      </div>
     );
   }
 
   return (
     <div
       style={{ backgroundColor: background === "Light" ? "#fff" : col }}
-      className="w-full flex justify-between px-26 mx-auto py-24 pt-10"
+      className="w-full px-6 sm:px-10 lg:px-26 mx-auto py-16 lg:py-24"
     >
-      {/* === Left Side - Dynamic Heading and Text === */}
-      <div className="flex flex-col">
-        {headerContent.heading ? (
-          <>
-            {/* Dynamic Heading */}
-            <h1
-              style={{ color: background === "Dark" ? "#fff" : col }}
-              className="text-[32px] max-w-95  mt-13 font-bold"
+      <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-10">
+        <div className="flex flex-col text-center lg:text-left">
+          {headerContent.heading ? (
+            <>
+              <h1
+                style={{ color: background === "Dark" ? "#fff" : col }}
+                className="text-[28px] sm:text-[32px] max-w-[95%] font-bold leading-snug"
+              >
+                {headerContent.heading.substring(0, 20)} <br />
+                {headerContent.heading.substring(22)}
+              </h1>
+
+              <p
+                style={{ color: background === "Dark" ? "#fff" : "gray" }}
+                className="text-gray-500 leading-relaxed tracking-wide max-w-[95%] text-base sm:text-lg mt-4 sm:mt-6"
+              >
+                {headerContent.paragraph.substring(0, 45)} <br />
+                {headerContent.paragraph.substring(45)}
+              </p>
+            </>
+          ) : (
+            <h1 className="text-[28px] sm:text-[32px] font-bold">Loading header...</h1>
+          )}
+        </div>
+
+        {/* Plans Section */}
+        <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center lg:justify-start gap-6 lg:gap-0 w-auto">
+          {plans.map((plan, index) => (
+            <div
+              key={index}
+              className={`relative w-full h-full  flex-1 py-18 px-4 text-center border border-gray-200  transition-all duration-300
+                ${plan.heighlightColor === "1" ? "bg-gray-100 xl:scale-108 z-10" : "bg-white"}
+              `}
             >
-              {headerContent.heading.substring(0,20)}<br/>
-              {headerContent.heading.substring(22)}
-            </h1>
+              <h2 style={{ color: col }} className="text-2xl sm:text-3xl font-bold mb-6">
+                {plan.title}
+              </h2>
 
-            {/* Dynamic Paragraph */}
-            <p
-              style={{ color: background === "Dark" ? "#fff" : "gray" }}
-              className="text-gray-500 leading-relaxed tracking-wide max-w-95 text-[18px] mt-18"
-            >
-              {headerContent.paragraph.substring(0,45)}<br/>
-              {headerContent.paragraph.substring(45)}
-            </p>
-          </>
-        ) : (
-          <h1 className="text-[32px] font-bold">Loading header...</h1>
-        )}
-      </div>
+              <p style={{ color: col }} className="text-3xl sm:text-4xl">
+                $
+                <span className="font-bold">
+                  {plan.discount === "1" ? plan.discountPrice : plan.price}
+                </span>
+                <span className="ml-1 text-lg text-gray-500">{plan.period}</span>
+              </p>
 
-      {/* === Right Side - Dynamic Pricing Plans === */}
-      <div className="flex mt-14">
-        {plans.map((plan, index) => (
-          <div
-            key={index}
-            className={`${
-              plan.title === "Extended" ? "px-12" : "px-4"
-            } relative w-auto py-18 h-full text-center border border-gray-200 transition-all duration-300 
-              ${plan.heighlightColor === "1" ? "bg-gray-100 scale-105 z-10" : "bg-white"}
-            `}
-          >
-            {/* Plan Name */}
-            <h2 style={{ color: col }} className="text-3xl font-bold mb-8">
-              {plan.title}
-            </h2>
+              <p className="mt-4 text-gray-500 text-base sm:text-lg">{plan.description}</p>
 
-            {/* Price Section */}
-            <p style={{ color: col }} className="text-4xl">
-              $
-              <span className="text-4xl font-bold">
-                {plan.discount === "1" ? plan.discountPrice : plan.price}
-              </span>
-              <span className="text-lg text-gray-500">{plan.period}</span>
-            </p>
+              <ul
+                style={{ color: col }}
+                className="mt-6 space-y-2 text-base sm:text-lg"
+              >
+                {plan.addItem.map((feature, idx) => (
+                  <li
+                    key={idx}
+                    className={
+                      feature.tooltipText
+                        ? "underline underline-offset-4 decoration-dotted cursor-pointer"
+                        : ""
+                    }
+                    title={feature.tooltipText}
+                  >
+                    {feature.title}
+                  </li>
+                ))}
+              </ul>
 
-            {/* Description */}
-            <p className="mt-4 text-lg text-gray-500">{plan.description}</p>
-
-            {/* Features */}
-            <ul
-              style={{ color: col }}
-              className="mt-6 space-y-2 text-lg"
-            >
-              {plan.addItem.map((feature, idx) => (
-                <li
-                  key={idx}
-                  className={
-                    feature.tooltipText
-                      ? "underline underline-offset-4 decoration-dotted cursor-pointer"
-                      : ""
-                  }
-                  title={feature.tooltipText}
-                >
-                  {feature.title}
-                </li>
-              ))}
-            </ul>
-
-            {/* Button */}
-            <button
-              className={`mt-8 px-8 py-2.5 cursor-pointer font-medium transition-colors duration-300 ${
-                plan.heighlightColor === "1"
-                  ? "bg-indigo-500 text-white hover:bg-pink-400"
-                  : "border border-blue-500 text-blue-500 hover:border-pink-400 hover:bg-pink-400 hover:text-white"
-              }`}
-            >
-              {plan.buttonLabel}
-            </button>
-          </div>
-        ))}
+              <button
+                className={`mt-8 w-full sm:w-auto px-6 py-2.5 cursor-pointer font-medium rounded transition-colors duration-300 
+                  ${
+                    plan.heighlightColor === "1"
+                      ? "bg-indigo-500 text-white hover:bg-pink-400"
+                      : "border border-blue-500 text-blue-500 hover:border-pink-400 hover:bg-pink-400 hover:text-white"
+                  }`}
+              >
+                {plan.buttonLabel}
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

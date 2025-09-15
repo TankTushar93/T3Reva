@@ -77,7 +77,6 @@ const Ads = () => {
     return str.substring(startIndex + start.length, endIndex);
   };
 
-  // Show nothing until data is loaded
   if (!adData){
     return (
       <div
@@ -97,7 +96,7 @@ const Ads = () => {
           layout === "Wide" ? "xl:ml-27" : "xl:ml-10"
         } gap-3 ${background === "Light" ? "text-gray-900" : "text-white"}`}
       >
-        {/* Left Content */}
+ 
         <div
           className={`w-full xl:w-140 mt-19 ${
             layout === "Wide" ? "xl:pl-20" : "xl:pl-8"
@@ -122,7 +121,6 @@ const Ads = () => {
             {adData.text?.substring(61)}
           </p>
 
-          {/* Stats Cards */}
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:flex gap-10 mt-18 justify-center lg:justify-center">
             {[{ header: adData.header, text: adData.secntext }, { header: adData.header2, text: adData.secntext2 }].map(
               (item, index) => (
@@ -154,7 +152,6 @@ const Ads = () => {
           </div>
         </div>
 
-        {/* Right Image */}
         <div
           className={`w-full ${
             layout === "Wide" ? "lg:h-150 lg:w-250" : "lg:h-100 lg:w-160"

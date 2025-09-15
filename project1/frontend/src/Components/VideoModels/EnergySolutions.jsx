@@ -16,7 +16,6 @@ const EnergySolutions = () => {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  // Track mouse movement for Play Button
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
@@ -24,7 +23,6 @@ const EnergySolutions = () => {
     setCursorPos({ x, y });
   };
 
-  // Recursive function to find object by ID
   const findById = (obj, id) => {
     let result = null;
     function search(o) {
@@ -44,12 +42,10 @@ const EnergySolutions = () => {
     return result;
   };
 
-  // Fetch data dynamically
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/elements/business-elements/video-modal")
       .then((res) => res.json())
       .then((data) => {
-        // Fetch service blocks
         const servicesArray = [1097, 1099, 1096, 1098].map((id) => {
           const block = findById(data, id);
           return {
@@ -60,7 +56,6 @@ const EnergySolutions = () => {
         });
         setServices(servicesArray);
 
-        // Fetch video block
         const videoBlock = findById(data, 1094);
         if (videoBlock) {
           setVideoData({
@@ -86,7 +81,7 @@ const EnergySolutions = () => {
       style={{ backgroundColor: background === "Light" ? "#fff" : col }}
       className="w-full px-4 md:px-12 py-12 lg:py-20 flex flex-col lg:flex-row items-center gap-6"
     >
-      {/* Left: Services Section */}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:ml-20">
         {services.map((service, index) => (
           <div
@@ -104,7 +99,6 @@ const EnergySolutions = () => {
         ))}
       </div>
 
-      {/* Right: Video Section */}
       <div className="relative w-full mb-37 lg:w-[45%]">
         <div
           className="relative w-full"
@@ -121,7 +115,6 @@ const EnergySolutions = () => {
             className="cursor-pointer w-full h-auto object-cover "
           />
 
-          {/* Play Button */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <button
               onClick={openModal} 
@@ -146,7 +139,6 @@ const EnergySolutions = () => {
         </div>
       </div>
 
-      {/* Video Modal */}
       {isOpen && (
         <div
           onClick={closeModal}
@@ -156,7 +148,6 @@ const EnergySolutions = () => {
             onClick={(e) => e.stopPropagation()}
             className="relative w-[90%] md:w-[70%] lg:w-[60%] mt-22 bg-transparent rounded-lg overflow-hidden shadow-lg"
           >
-            {/* Close Button */}
             <button
               onClick={closeModal}
               className="absolute top-3 right-3 text-white text-2xl font-bold z-50 hover:text-gray-300"
@@ -164,7 +155,6 @@ const EnergySolutions = () => {
               ✕
             </button>
 
-            {/* Video Iframe */}
             <iframe
               className="w-full h-[250px] sm:h-[350px] md:h-[400px] lg:h-[600px]"
               src={videoData.video}

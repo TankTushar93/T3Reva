@@ -7,7 +7,6 @@ const ApiDemo = () => {
     fetch('https://t3-reva.t3planet.de/')
       .then((res) => res.json())
       .then((data) => {
-        // Optional chaining for safe access
         const section = data?.content?.colPos0?.[6];
 
         const text =

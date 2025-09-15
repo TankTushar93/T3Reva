@@ -15,12 +15,9 @@ const Elegant = () => {
     fetch("https://t3-reva.t3planet.de/elements/basic-elements/gallery")
       .then((res) => res.json())
       .then((data) => {
-        //  Extract breadcrumbs
         if (data?.breadcrumbs) {
           setBreadcrumbs(data.breadcrumbs);
         }
-
-        //  Extract gallery heading & description
         function findById(obj, id) {
           let result = null;
           function search(o) {
@@ -40,11 +37,9 @@ const Elegant = () => {
           return result;
         }
 
-        // Replace 1353 with actual content ID
         const galleryContent = findById(data, 1353);
         const bodytext = galleryContent?.content?.bodytext || "";
 
-        // Parse HTML
         const tempDiv = document.createElement("div");
         tempDiv.innerHTML = bodytext;
         const h1 = tempDiv.querySelector("h1")?.innerText || "";
@@ -61,9 +56,7 @@ const Elegant = () => {
 
   if (loading) {
     return (
-      <div className="h-110 w-full bg-gray-100 flex justify-center items-center">
-        
-      </div>
+      <div className="h-110 w-full bg-gray-100 flex justify-center items-center"> </div>
     );
   }
 
@@ -77,7 +70,7 @@ const Elegant = () => {
       }}
       className="h-110 w-full flex flex-col justify-center items-center bg-gray-100 text-center px-4 sm:px-8 lg:px-16 py-10"
     >
-      {/* Dynamic Title */}
+      {/* Title */}
       <h1
         style={{ color: background === 'Dark' ? '#fff' : col }}
         className="text-[28px] sm:text-[34px] md:text-[39px] font-extrabold mt-14 sm:mt-14"
@@ -85,7 +78,7 @@ const Elegant = () => {
         {galleryData?.title}
       </h1>
 
-      {/* Dynamic Description */}
+      {/* Description */}
       <p
         style={{ color: background === 'Dark' ? '#fff' : 'gray' }}
         className="text-gray-500 leading-relaxed tracking-wide mx-auto max-w-[700px] text-[15px] sm:text-[17px] md:text-[18px] mt-4"
@@ -93,7 +86,7 @@ const Elegant = () => {
         {galleryData?.description}
       </p>
 
-      {/*  Dynamic Breadcrumbs */}
+      {/*  Breadcrumbs */}
       <div
         className="flex flex-wrap justify-center gap-2 sm:gap-3 cursor-pointer mt-8 text-[13px] sm:text-[15px] md:text-[16px]"
         style={{ color: background === 'Dark' ? '#fff' : 'gray' }}

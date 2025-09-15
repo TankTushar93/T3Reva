@@ -23,7 +23,7 @@ const Organized = () => {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  // Mouse hover movement for video button
+
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
@@ -31,12 +31,10 @@ const Organized = () => {
     setCursorPos({ x, y });
   };
 
-  // Fetch API data
   useEffect(() => {
     fetch("https://t3-reva.t3planet.de/elements/business-elements/video-modal")
       .then((res) => res.json())
       .then((json) => {
-        // Helper to find nested object by ID
         const findById = (obj, id) => {
           let result = null;
           function search(o) {
@@ -56,7 +54,6 @@ const Organized = () => {
           return result;
         };
 
-        // Extract text (ID: 1102)
         const textBlock = findById(json, 1102);
         let subtitle = "",
           title = "",
@@ -69,7 +66,6 @@ const Organized = () => {
           description = tempDiv.querySelector("h6")?.innerText || "";
         }
 
-        // Extract trust image (ID: 1103)
         const trustBlock = findById(json, 1103);
         const trustImage =
           trustBlock?.content?.gallery?.rows?.["1"]?.columns?.["1"]?.publicUrl || "";
@@ -89,9 +85,7 @@ const Organized = () => {
 
   if (loading) {
     return (
-      <div className="w-full flex justify-center items-center py-20 text-gray-500">
-        Loading...
-      </div>
+      <div className="w-full flex justify-center items-center py-20 text-gray-500"></div>
     );
   }
 
@@ -103,7 +97,7 @@ const Organized = () => {
       }}
       className="w-full h-screen px-3 py-12 flex flex-col lg:flex-row items-center justify-between"
     >
-      {/* LEFT: Video Section */}
+
       <div className="w-full lg:w-1/2 h-142 mb-8 lg:mb-0 flex">
         <div
           className="relative w-full"
@@ -144,7 +138,6 @@ const Organized = () => {
         </div>
       </div>
 
-      {/* RIGHT: Dynamic Text Section */}
       <div className="w-full lg:w-1/2 h-full py-20 pl-6 text-center lg:text-left">
         <h2 className="text-2xl sm:text-[18px] text-blue-500 mb-4">---  {data.subtitle}</h2>
 
@@ -169,7 +162,6 @@ const Organized = () => {
         )}
       </div>
 
-      {/* MODAL: Video Player */}
       {isOpen && (
         <div
           onClick={closeModal}
@@ -179,7 +171,6 @@ const Organized = () => {
             onClick={(e) => e.stopPropagation()}
             className="relative w-[90%] md:w-[70%] mt-24 lg:w-[70%] bg-transparent rounded-lg overflow-hidden shadow-lg"
           >
-            {/* Close Button */}
             <button
               onClick={closeModal}
               className="absolute top-3 right-3 text-white text-2xl font-bold z-50 hover:text-gray-300"
@@ -187,7 +178,6 @@ const Organized = () => {
               ✕
             </button>
 
-            {/* YouTube Iframe */}
             <iframe
               className="w-full h-[250px] sm:h-[350px] md:h-[400px] lg:h-[600px]"
               src={data.videoUrl}
