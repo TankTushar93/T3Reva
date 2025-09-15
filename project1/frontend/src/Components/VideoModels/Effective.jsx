@@ -90,18 +90,16 @@ const Effective = () => {
 
   if (loading) {
     return (
-      <div className="w-full flex justify-center items-center py-20 text-gray-500">
-        Loading...
-      </div>
+      <div className="w-full flex justify-center items-center py-20 text-gray-500">    </div>
     );
   }
 
   return (
     <div
       style={{ backgroundColor: background === "Light" ? "#fff" : col }}
-      className="w-full min-h-screen px-3 py-12 flex flex-col gap-6 lg:flex-row items-center justify-between"
+      className="w-full min-h-screen  px-4  flex flex-col gap-6 lg:flex-row items-center justify-between"
     >
-      <div className="w-full lg:w-1/2 h-full py-24 pl-6 lg:pl-24 text-center lg:text-left">
+      <div className="w-full lg:w-1/2 h-full py-24 pl-6 lg:pl-24 text-left">
         <h2 className="text-2xl sm:text-[18px] text-blue-500 mb-4">
           {data.subtitle}
         </h2>
@@ -127,7 +125,7 @@ const Effective = () => {
         )}
       </div>
 
-      <div className="w-full lg:w-1/2 h-138 mb-8 lg:mb-0 flex">
+      <div className="w-full lg:w-1/2  lg:h-138 mb-28 lg:mb-0 flex">
         <div
           className="relative w-full max-w-2xl"
           onMouseMove={handleMouseMove}

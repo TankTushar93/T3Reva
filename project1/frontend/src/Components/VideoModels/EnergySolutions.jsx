@@ -73,13 +73,13 @@ const EnergySolutions = () => {
   }, []);
 
   if (loading) {
-    return <div className="w-full text-center py-20 text-gray-500">Loading...</div>;
+    return <div className="w-full text-center py-20 text-gray-500"></div>;
   }
 
   return (
     <div
       style={{ backgroundColor: background === "Light" ? "#fff" : col }}
-      className="w-full px-4 md:px-12 py-12 lg:py-20 flex flex-col lg:flex-row items-center gap-6"
+      className="w-full px-4 md:px-12 py-4 lg:py-10 flex flex-col lg:flex-row items-center gap-6"
     >
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:ml-20">
@@ -99,7 +99,7 @@ const EnergySolutions = () => {
         ))}
       </div>
 
-      <div className="relative w-full mb-37 lg:w-[45%]">
+      <div className="relative w-full mb-5 lg:mb-37 lg:w-[45%]">
         <div
           className="relative w-full"
           onMouseMove={handleMouseMove}

@@ -23,7 +23,6 @@ const Organized = () => {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
@@ -68,11 +67,13 @@ const Organized = () => {
 
         const trustBlock = findById(json, 1103);
         const trustImage =
-          trustBlock?.content?.gallery?.rows?.["1"]?.columns?.["1"]?.publicUrl || "";
+          trustBlock?.content?.gallery?.rows?.["1"]?.columns?.["1"]?.publicUrl ||
+          "";
 
-        
-        const videoImage ="https://t3-reva.t3planet.de/fileadmin/ns_theme_t3reva/video-model/home_mobile_app_video_bg.jpg";
-        const videoUrl = "https://www.youtube.com/embed/a6Ct4vL_XZM?mute=1&si=vl9LN_3gziSQVuZC";
+        const videoImage =
+          "https://t3-reva.t3planet.de/fileadmin/ns_theme_t3reva/video-model/home_mobile_app_video_bg.jpg";
+        const videoUrl =
+          "https://www.youtube.com/embed/a6Ct4vL_XZM?mute=1&si=vl9LN_3gziSQVuZC";
 
         setData({ subtitle, title, description, trustImage, videoImage, videoUrl });
         setLoading(false);
@@ -85,7 +86,9 @@ const Organized = () => {
 
   if (loading) {
     return (
-      <div className="w-full flex justify-center items-center py-20 text-gray-500"></div>
+      <div className="w-full flex justify-center items-center py-20 text-gray-500">
+        Loading...
+      </div>
     );
   }
 
@@ -93,14 +96,16 @@ const Organized = () => {
     <div
       style={{
         backgroundColor:
-          background === "Light" ? "oklch(96.7% 0.003 264.542)" : lighten(0.24, col),
+          background === "Light"
+            ? "oklch(96.7% 0.003 264.542)"
+            : lighten(0.24, col),
       }}
-      className="w-full h-screen px-3 py-12 flex flex-col lg:flex-row items-center justify-between"
+      className="w-full min-h-screen px-4 md:px-2 py-10 flex flex-col lg:flex-row items-center justify-between gap-9 lg:gap-3"
     >
-
-      <div className="w-full lg:w-1/2 h-142 mb-8 lg:mb-0 flex">
+      {/* Left Side - Video Section */}
+      <div className="w-full lg:w-1/2 lg:h-142 mb-8 lg:mb-0 flex justify-center">
         <div
-          className="relative w-full"
+          className="relative w-full "
           onMouseMove={handleMouseMove}
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => {
@@ -111,18 +116,19 @@ const Organized = () => {
           <img
             src={data.videoImage}
             alt="Team meeting"
-            className="cursor-pointer w-230 h-full object-cover shadow-sm"
+            className="cursor-pointer w-full h-auto object-cover"
           />
 
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-           <button
-              onClick={openModal} 
-              className="  hover:border-1 hover:border-white transition cursor-pointer rounded-full p-5 shadow-lg pointer-events-auto"
+            <button
+              onClick={openModal}
+              className="hover:border hover:border-white transition cursor-pointer rounded-full p-5 shadow-lg pointer-events-auto"
               style={{
                 transform: `translate(${cursorPos.x}px, ${cursorPos.y}px)`,
-                transition: isHovering ? "transform 0.19s linear" : "transform 0.9s ease-out",
+                transition: isHovering
+                  ? "transform 0.19s linear"
+                  : "transform 0.9s ease-out",
                 backgroundColor: isHovering ? "transparent" : col,
-                
               }}
             >
               <svg
@@ -138,34 +144,42 @@ const Organized = () => {
         </div>
       </div>
 
-      <div className="w-full lg:w-1/2 h-full py-20 pl-6 text-center lg:text-left">
-        <h2 className="text-2xl sm:text-[18px] text-blue-500 mb-4">---  {data.subtitle}</h2>
+      {/* Right Side - Text Content */}
+      <div className="w-full lg:w-1/2 text-left lg:mb-30 px-4">
+        <h2 className="text-lg sm:text-xl text-blue-500 mb-3">
+          --- {data.subtitle}
+        </h2>
 
         <h3
           style={{ color: background === "Dark" ? "#fff" : col }}
-          className="text-[33px] font-bold text-blue-600 mb-4"
+          className="text-[28px] sm:text-[32px] md:text-[36px] font-bold text-blue-600 leading-tight mb-4"
         >
           {data.title}
         </h3>
 
         <p
           style={{ color: background === "Dark" ? "#fff" : "gray" }}
-          className="text-gray-500 leading-relaxed tracking-wide w-full text-[15px] sm:text-[16px] md:text-[20px] mt-3 sm:mt-8"
+          className="text-gray-500 leading-relaxed tracking-wide text-[15px] sm:text-[16px] md:text-[18px] max-w-[600px] mx-auto lg:mx-0"
         >
           {data.description}
         </p>
 
         {data.trustImage && (
-          <div className="mt-13 flex items-center justify-center">
-            <img src={data.trustImage} className="h-full" alt="Trust Badge" />
+          <div className="mt-8 flex items-center justify-center ">
+            <img
+              src={data.trustImage}
+              className="h-full object-contain"
+              alt="Trust Badge"
+            />
           </div>
         )}
       </div>
 
+      {/* Modal */}
       {isOpen && (
         <div
           onClick={closeModal}
-          className="fixed inset-0 bg-white/40 bg-opacity-70 z-50 flex items-center justify-center"
+          className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4"
         >
           <div
             onClick={(e) => e.stopPropagation()}

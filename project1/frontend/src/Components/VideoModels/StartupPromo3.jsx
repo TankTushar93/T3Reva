@@ -125,7 +125,7 @@ const StartupPromo3 = () => {
         </div>
       </div>
 
-      <div className="w-full lg:w-1/2 mt-13 text-center lg:text-left">
+      <div className="w-full lg:w-1/2 mt-1 text-left">
         <h1 style={{ color: "#fff" }} className="text-[28px] sm:text-[32px] md:text-[32px] font-semibold leading-tight">
           {textData.title.substring(0,24)}<br/>
           {textData.title.substring(25)}
@@ -136,7 +136,7 @@ const StartupPromo3 = () => {
         </p>
 
         <a href={textData.buttonLink}>
-          <button className="mt-8 cursor-pointer px-6 sm:px-10 py-4 text-sm sm:text-md font-semibold text-white bg-gradient-to-r from-pink-500 to-blue-600 flex items-center justify-center gap-2 group mx-auto lg:mx-0">
+          <button className="mt-8 cursor-pointer px-6 sm:px-10 py-4 text-sm sm:text-md font-semibold text-white bg-gradient-to-r from-pink-500 to-blue-600 flex items-center justify-center gap-2 group  lg:mx-0">
             View More
             <FaArrowRightLong className="transition-transform duration-300 group-hover:translate-x-2" />
           </button>

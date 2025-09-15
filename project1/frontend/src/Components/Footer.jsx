@@ -186,7 +186,7 @@ const Footer = () => {
           </h3>
 
           
-              <div className="flex flex-col sm:flex-row border p-1 bg-white border-gray-200 overflow-hidden w-full max-w-md mx-auto">
+              <div className="flex flex-col sm:flex-row border p-1 bg-white border-gray-200 overflow-hidden w-full ">
                 {/* Email Input */}
                 <input
                   type="email"

@@ -130,10 +130,10 @@ const StartupPromo2 = () => {
         </div>
       </div>
 
-      <div className="w-full lg:w-1/2 mt-4 text-center lg:text-left">
+      <div className="w-full lg:w-1/2 mt-4 text-left">
         <h1
           style={{ color: background === "Dark" ? "#fff" : col }}
-          className="text-[28px] sm:text-[32px] md:text-[32px] mt-10 md:mt-9 max-w-110 font-semibold leading-tight"
+          className="text-[28px] sm:text-[32px] md:text-[32px] mt-1 md:mt-9 max-w-110 font-semibold leading-tight"
         >
          {textData.title.substring(0, 26)} <br />
           {textData.title.substring(26)}  

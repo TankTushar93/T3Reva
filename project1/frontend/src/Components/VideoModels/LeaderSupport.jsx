@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useSidebar } from "../../context/Sidebarcontext";
 import { lighten } from "polished";
 
-
 const LeaderSupport = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem("color");
@@ -99,13 +98,15 @@ const LeaderSupport = () => {
     <div
       style={{
         backgroundColor:
-          background === "Light" ? "oklch(96.7% 0.003 264.542)" : lighten(0.24, col),
+          background === "Light"
+            ? "oklch(96.7% 0.003 264.542)"
+            : lighten(0.24, col),
       }}
-      className="w-full min-h-screen px-3 py-12 flex flex-col lg:flex-row items-center justify-between"
+      className="w-full min-h-screen px-4 sm:px-6 lg:px-2 py-12 flex flex-col lg:flex-row items-center justify-between "
     >
-      <div className="w-full lg:w-1/2 h-138 mb-8 lg:mb-0 flex">
+      <div className="w-full lg:w-1/2  mb-10 lg:mb-0 lg:h-140 flex ">
         <div
-          className="relative w-full max-w-2xl"
+          className="relative w-full max-w-3xl"
           onMouseMove={handleMouseMove}
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => {
@@ -121,12 +122,14 @@ const LeaderSupport = () => {
 
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <button
-              onClick={openModal} 
-              className="  hover:border hover:border-white transition cursor-pointer rounded-full p-5 shadow-lg pointer-events-auto"
+              onClick={openModal}
+              className="hover:border hover:border-white transition cursor-pointer rounded-full p-5 shadow-lg pointer-events-auto"
               style={{
                 transform: `translate(${cursorPos.x}px, ${cursorPos.y}px)`,
-                transition: isHovering ? "transform 0.19s linear" : "transform 0.9s ease-out",
-                backgroundColor: isHovering ? "transparent" : col
+                transition: isHovering
+                  ? "transform 0.19s linear"
+                  : "transform 0.9s ease-out",
+                backgroundColor: isHovering ? "transparent" : col,
               }}
             >
               <svg
@@ -142,28 +145,35 @@ const LeaderSupport = () => {
         </div>
       </div>
 
-      <div className="w-full lg:w-1/2 h-full py-12 lg:py-24 pl-6 lg:pl-34 text-center lg:text-left">
-        <h2 className="text-2xl sm:text-[18px] text-blue-500 mb-4">
+      {/* Right Section - Text */}
+      <div className="w-full lg:w-1/2 lg:pl-32 lg:mb-22 text-left">
+        <h2 className="text-xl sm:text-base text-blue-500 mb-3">
           --- {textData.subtitle}
         </h2>
         <h3
           style={{ color: background === "Dark" ? "#fff" : col }}
-          className="text-[33px] font-bold mb-4"
+          className="text-[26px] sm:text-[30px] md:text-[33px] font-bold mb-5 leading-snug"
         >
           {textData.title}
         </h3>
 
         <ul
           style={{ color: background === "Dark" ? "#fff" : "gray" }}
-          className="text-lg leading-relaxed tracking-wide mt-10 mb-6 space-y-2  list-inside"
+          className="text-base sm:text-lg leading-relaxed tracking-wide mt-6 mb-8 space-y-3"
         >
           {textData.listItems.map((item, index) => (
-            <li key={index} className="flex items-center gap-4"> <span>✔ </span>{item.replace("✔", "").trim()}</li>
+            <li
+              key={index}
+              className="flex items-start sm:items-center gap-2 sm:gap-4 text-left"
+            >
+              <span className="text-gray-500 text-lg">✔</span>
+              {item.replace("✔", "").trim()}
+            </li>
           ))}
         </ul>
 
         <a href={textData.buttonLink}>
-          <button className="bg-blue-500 font-bold cursor-pointer text-white px-8 py-3.5 hover:bg-blue-400 transition">
+          <button className="bg-blue-500 font-bold cursor-pointer text-white px-6 sm:px-8 py-3 sm:py-3.5  hover:bg-blue-400 transition">
             {textData.buttonText}
           </button>
         </a>
@@ -172,7 +182,7 @@ const LeaderSupport = () => {
       {isOpen && (
         <div
           onClick={closeModal}
-          className="fixed inset-0 bg-white/40 bg-opacity-70 z-50 flex items-center justify-center"
+          className="fixed inset-0 bg-black/70 z-50  flex items-center justify-center p-4"
         >
           <div
             onClick={(e) => e.stopPropagation()}
