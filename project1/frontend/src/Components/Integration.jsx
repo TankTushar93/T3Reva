@@ -5,7 +5,7 @@ import { useSidebar } from '../context/Sidebarcontext';
 
 
 const Integration = () => {
-  const {background} = useSidebar();
+  const {background,pageStripeVisible} = useSidebar();
   const col = localStorage.getItem('color')
   const [items, setItems] = useState([]);
   const [heading, setHeading] = useState('');
@@ -75,8 +75,8 @@ const Integration = () => {
   )}
 
   return (
-    <div style={{backgroundColor:background === 'Light' ? '#fff' : col}} className={`px-6 relative    pt-20 py-2 text-center`}>
-        { 
+    <div style={{backgroundColor:background === 'Light' ? '#fff' : col}} className={`px-6 relative  z-10  pt-20 py-2 text-center`}>
+        { pageStripeVisible && background === 'Light' &&
         <div className="pointer-events-none hidden lg:block absolute inset-0 mx-auto w-full max-w-7xl z-[-1]">
         <div className="absolute top-0 bottom-0 -left-10 w-px bg-gray-200 z-0"></div>
         <div className="absolute top-0 bottom-0 left-110 w-px bg-gray-200 z-0"></div>

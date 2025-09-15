@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useSidebar } from "../context/Sidebarcontext";
 import {lighten} from 'polished'
 const Ads = () => {
-  const { background, layout } = useSidebar();
+  const { background, layout ,pageStripeVisible} = useSidebar();
   const col = localStorage.getItem('color');
+   const gcol = localStorage.getItem('gcolor');
   const [adData, setAdData] = useState(null);
 
   useEffect(() => {
@@ -87,10 +88,16 @@ const Ads = () => {
   } 
 
   return (
-    <div style={{backgroundColor:background === 'Light' ? '#fff' : lighten(0.26,col)}}
-      className={`h-auto relative w-full flex justify-center items-center
+    <div style={{backgroundColor:background === 'Light' ? lighten(0.35,gcol) : lighten(0.26,col)}}
+      className={`h-auto relative z-10 w-full flex justify-center items-center
        xl:pt-24 pb-19`}
     >
+      {pageStripeVisible && background === 'Light' &&
+       <div className="pointer-events-none hidden lg:block absolute inset-0 mx-auto w-full max-w-7xl z-[-1]">
+        <div className="absolute top-0 bottom-0 -left-10 w-px bg-gray-200 -z-10"></div>
+        <div className="absolute top-0 bottom-0 left-110 w-px bg-gray-200 z-0"></div>
+        <div className="absolute top-0 bottom-0 right-91 w-[0.5px] bg-gray-200 z-0"></div>
+      </div>}
       <div
         className={`flex flex-col z-10 lg:flex-row mb-0 xl:mb-10 justify-center items-center w-full px-4 lg:px-6 xl:px-1 ${
           layout === "Wide" ? "xl:ml-27" : "xl:ml-10"

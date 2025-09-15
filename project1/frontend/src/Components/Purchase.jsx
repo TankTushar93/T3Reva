@@ -4,6 +4,7 @@ import { useSidebar } from "../context/Sidebarcontext";
 const Purchase = () => {
   const {background} = useSidebar();
   const col = localStorage.getItem('color')
+  const pcol = localStorage.getItem('pcolor');
   const [pageData, setPageData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -77,7 +78,9 @@ const Purchase = () => {
             {getSubstringBetween(pageData?.text, "&nbsp;&nbsp;", "&nbsp;")}
           </p>
 
-          <button className="mt-12 px-10 py-4 relative cursor-pointer overflow-hidden border border-blue-500 bg-blue-500 text-white font-medium text-md group">
+          <button style={{backgroundColor:pcol,
+            borderColor:pcol
+          }} className="mt-12 px-10 py-4 relative cursor-pointer overflow-hidden border  text-white font-medium text-md group">
             <span className="relative z-10 transition-colors duration-500 group-hover:text-blue-600">
               {pageData?.text1.substring(0, 15)}
             </span>

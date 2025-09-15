@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSidebar } from '../context/Sidebarcontext';
-
+import { lighten } from 'polished';
 const Texts = () => {
-  const { background } = useSidebar();
+  const { background,pageStripeVisible } = useSidebar();
   const [section, setSection] = useState(null);
   const navigate = useNavigate();
   const col = localStorage.getItem('color');
+  const pcol = localStorage.getItem('pcolor');
+   const gcol = localStorage.getItem('gcolor');
+   const terocol = localStorage.getItem('tercolor');
+
 
   useEffect(() => {
     fetch('https://t3-reva.t3planet.de/')
@@ -62,8 +66,16 @@ const Texts = () => {
 
   return (
     <div style={{backgroundColor:background === 'Light' ? '#fff' : col}}
-      className={`px-4 relative flex flex-col  justify-center items-center text-center py-22`}
+      className={`px-4 relative z-10 flex flex-col  justify-center items-center text-center py-22`}
     >
+      {pageStripeVisible && background === "Light" &&
+      <div className="pointer-events-none hidden lg:block absolute inset-0 mx-auto w-full max-w-7xl z-[-1]">
+        <div className="absolute top-0 bottom-0 -left-10 w-px bg-gray-200 -z-10"></div>
+        <div className="absolute top-0 bottom-0 left-110 w-px bg-gray-200 z-0"></div>
+        <div className="absolute top-0 bottom-0 right-91 w-[0.5px] bg-gray-200 z-0"></div>
+      </div> }
+      
+
       <h1
         style={{ color: background === 'Dark' ? '#fff' : col }}
         className="text-[38px] font-extrabold"
@@ -74,16 +86,16 @@ const Texts = () => {
         </span>
       </h1>
 
-      <p
-        className={`mt-3 max-w-140 font-mono leading-relaxed tracking-wide ${
-          background === 'Light' ? 'text-gray-500' : 'text-white'
-        } text-lg`}
+      <p style={{color:background === 'Light' ? 'gray' : '#fff'}}
+        className={`mt-3 max-w-140 font-mono leading-relaxed tracking-wide  text-lg`}
       >
         {section.paragraph}
       </p>
 
-      <button
-        className="mt-12 px-10 py-4 relative cursor-pointer overflow-hidden border border-blue-600 bg-blue-600 text-white font-medium text-md group"
+      <button style={{backgroundColor : pcol,
+        borderColor:pcol
+      }}
+        className="mt-12 px-10 py-4 relative cursor-pointer overflow-hidden border border-blue-600  text-white font-medium text-md group"
         onClick={() => navigate('/contact-us')}
       >
         <span className="relative z-10 transition-colors duration-500 group-hover:text-blue-600">

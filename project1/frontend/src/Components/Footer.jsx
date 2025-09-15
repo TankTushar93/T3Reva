@@ -8,6 +8,7 @@ import { useSidebar } from "../context/Sidebarcontext";
 const Footer = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem('color')
+  const pcol = localStorage.getItem('pcolor');
   const [email, setEmail] = useState("");
   const [footeritems, setFooteritems] = useState([]);
   const [section, setSection] = useState(null);
@@ -198,8 +199,10 @@ const Footer = () => {
                 />
 
                 {/* Submit Button */}
-                <button
-                  className="w-full sm:w-auto px-5 py-3 text-center relative cursor-pointer overflow-hidden border border-blue-500 bg-blue-500 text-white font-medium text-sm sm:text-base group"
+                <button style={{backgroundColor: pcol,
+                  borderColor:pcol
+                }}
+                  className="w-full sm:w-auto px-5 py-3 text-center relative cursor-pointer overflow-hidden border text-white font-medium text-sm sm:text-base group"
                   type="submit"
                 >
                   <span className="relative z-10 transition-colors duration-500 group-hover:text-blue-600">

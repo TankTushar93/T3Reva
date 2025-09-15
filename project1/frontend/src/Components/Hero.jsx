@@ -6,6 +6,8 @@ import { useSidebar } from '../context/Sidebarcontext';
 const Hero = () => {
   const { setIsOpen, color, layout, background } = useSidebar();
   const col = localStorage.getItem('color');
+  const pcol = localStorage.getItem('pcolor');
+  const terocol = localStorage.getItem('tercolor');
   const [heroData, setHeroData] = useState(null);
   const [index, setIndex] = useState(0);
   const [animationKey, setAnimationKey] = useState(0);
@@ -52,11 +54,11 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, [heroData]);
 
- if (!heroData) {
-  return (
-    <div style={{ backgroundColor: col }} className='w-full h-screen'></div>
-  );
-}
+  if (!heroData) {
+    return (
+      <div style={{ backgroundColor: col }} className='w-full h-screen'></div>
+    );
+  }
 
   return (
     <div style={{ backgroundColor: col }} className='w-full'>
@@ -75,10 +77,11 @@ const Hero = () => {
               {heroData.bodyHtml.substring(0, 13)}
             </h1>
 
-            <div
-              className={`h-6 absolute top-21 sm:top-25 md:top-26 lg:top-27 ${
-                layout === 'Wide' ? 'xl:top-36' : 'xl:top-53'
-              } inset-0 ml-0 w-1/3 md:w-1/2 xl:w-3/4 bg-gradient-to-r from-blue-600 z-0`}
+            <div style={{
+              background: `linear-gradient(to right, ${pcol}, transparent)`
+            }}
+              className={`h-6 absolute top-21 sm:top-25 md:top-26 lg:top-27 ${layout === 'Wide' ? 'xl:top-36' : 'xl:top-53'
+                } inset-0 ml-0 w-1/3 md:w-1/2 xl:w-3/4 z-0`}
             ></div>
 
             <p className='mt-6 text-left sm:mt-12 text-base sm:text-lg md:text-lg lg:text-[17px] leading-relaxed tracking-wide text-white xl:max-w-189 mx-auto lg:mx-0'>
@@ -86,8 +89,10 @@ const Hero = () => {
             </p>
           </div>
 
-          <button
-            className={`mt-8 cursor-pointer ml-0 sm:mt-10 md:mt-20 px-6 sm:px-10 py-4 text-sm sm:text-md font-semibold text-white bg-gradient-to-r from-pink-500 to-blue-600 flex items-center justify-center gap-2 group mx-auto lg:mx-0`}
+          <button style={{
+              background: `linear-gradient(to right, ${pcol}, ${terocol})`
+            }}
+            className={`mt-8 cursor-pointer ml-0 sm:mt-10 md:mt-20 px-6 sm:px-10 py-4 text-sm sm:text-md font-semibold text-white flex items-center justify-center gap-2 group mx-auto lg:mx-0`}
           >
             {heroData.buttonHtml}
             <FaArrowRightLong className='transition-transform duration-300 group-hover:translate-x-2' />

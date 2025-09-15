@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSidebar } from '../context/Sidebarcontext';
 
 const FAQ = () => {
-  const { background, layout } = useSidebar();
+  const { background, layout ,pageStripeVisible} = useSidebar();
   const col = localStorage.getItem('color')
   const [faq, setFaq] = useState({ heading: "", text: "", items: [] });
   const [open, setOpen] = useState(null); // Track currently opened index
@@ -60,9 +60,9 @@ const FAQ = () => {
   }
 
   return (
-    <div style={{backgroundColor:background === 'Light' ? '#fff' : col}} className={`px-4 flex   relative  flex-col items-center text-center pb-29 py-22`}>
+    <div style={{backgroundColor:background === 'Light' ? '#fff' : col}} className={`px-4 flex  z-10 relative  flex-col items-center text-center pb-29 py-22`}>
 
-      {!loading && background === 'Light' &&
+      {!loading && background === 'Light' && pageStripeVisible &&
         <div className="pointer-events-none hidden lg:block absolute inset-0 mx-auto w-full max-w-7xl z-[-1]">
           <div className="absolute top-0 bottom-0 -left-10 w-[1px] bg-gray-200 z-0"></div>
           <div className="absolute top-0 bottom-0 left-110 w-[1px] bg-gray-200 z-0"></div>

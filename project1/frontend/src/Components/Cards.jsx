@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { FaArrowRight } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import { useSidebar } from '../context/Sidebarcontext';
+import {lighten} from "polished";
 
 const Cards = () => {
-  const { background } = useSidebar();
+  const { background,pageStripeVisible } = useSidebar();
   const col = localStorage.getItem('color')
+   const gcol = localStorage.getItem('gcolor');
+  const pcol = localStorage.getItem('pcolor');
   const [cards, setCards] = useState([]);
   
   useEffect(() => {
@@ -43,17 +46,26 @@ const Cards = () => {
 
   return (
     <div style={{backgroundColor:background === 'Light' ? '#fff' : col}}
-      className={`h-full relative  grid pb-12 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 lg:gap-4 px-4 py-4 w-full`}
+      className={`h-full relative z-10 grid pb-12 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 lg:gap-4 px-4 py-4 w-full`}
     >
+      {pageStripeVisible && background === 'Light' &&
+       <div className="pointer-events-none hidden lg:block absolute inset-0 mx-auto w-full max-w-7xl z-[-1]">
+        <div className="absolute top-0 bottom-0 -left-10 w-px bg-gray-200 -z-10"></div>
+        <div className="absolute top-0 bottom-0 left-110 w-px bg-gray-200 z-0"></div>
+        <div className="absolute top-0 bottom-0 right-91 w-[0.5px] bg-gray-200 z-0"></div>
+      </div>}
+     
     
       {cards.length === 0 ? (
         <div className="col-span-full w-full h-screen"></div>
       ) : (
         cards.map((card, index) => (
-          <Link
+          <Link style={{backgroundColor: lighten(0.35,gcol),
+            
+          }}
             to={card.link}
             key={index}
-            className='relative group mb-18 flex flex-col justify-center items-center text-center w-full p-6 sm:p-8 bg-gray-100 cursor-pointer transition duration-200 ease-in hover:bg-white'
+            className='relative group mb-18 flex flex-col justify-center items-center text-center w-full p-6 sm:p-8  cursor-pointer transition duration-200 ease-in hover:bg-white'
           >
             <img
               src={card.imgUrl}

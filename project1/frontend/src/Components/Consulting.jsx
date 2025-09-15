@@ -3,7 +3,7 @@ import { FaArrowRight } from "react-icons/fa6";
 import { useSidebar } from "../context/Sidebarcontext";
 
 const Consulting = () => {
-  const {background} = useSidebar();
+  const {background,pageStripeVisible} = useSidebar();
   const col = localStorage.getItem('color')
   const [section, setSection] = useState(null);
   const [features, setFeatures] = useState([]);
@@ -87,8 +87,8 @@ const Consulting = () => {
   };
 
   return (
-    <div style={{backgroundColor:background === 'Light' ? '#fff' : col}} className={`px-6    relative pb-8 pt-26 py-2 text-center`}>
-      { 
+    <div style={{backgroundColor:background === 'Light' ? '#fff' : col}} className={`px-6  z-10  relative pb-8 pt-26 py-2 text-center`}>
+      { !loading && pageStripeVisible && background === 'Light' &&
       <div className="pointer-events-none hidden lg:block absolute inset-0 mx-auto w-full max-w-7xl z-[-1]">
         <div className="absolute top-0 bottom-0 -left-10 w-px bg-gray-200 z-0"></div>
         <div className="absolute top-0 bottom-0 left-110 w-px bg-gray-200 z-0"></div>

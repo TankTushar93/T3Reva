@@ -3,8 +3,9 @@ import { useSidebar } from '../context/Sidebarcontext';
 import { lighten } from 'polished';
 
 const Editing = () => {
-  const { background ,layout} = useSidebar();
+  const { background ,layout,pageStripeVisible} = useSidebar();
   const col = localStorage.getItem('color')
+   const gcol = localStorage.getItem('gcolor');
   const [activetab, setActivetab] = useState('Builder');
   const [openMobileTab, setOpenMobileTab] = useState(null);
   const [pageData, setPageData] = useState(null);
@@ -76,11 +77,11 @@ const Editing = () => {
   
 
   return (
-    <div style={{backgroundColor:background === 'Light' ? '#fff' : lighten(0.26,col)}}
+    <div style={{backgroundColor:background === 'Light' ? lighten(0.35,gcol) : lighten(0.26,col)}}
       className={` 
                   w-full relative items-center flex flex-col h-250 px-4 py-24 text-center`}
     >
-      {background === 'Light' && layout === 'Wide' &&
+      {background === 'Light' && layout === 'Wide' && pageStripeVisible &&
        <div className="pointer-events-none hidden lg:block absolute inset-0 mx-auto w-full max-w-7xl z-0">
         <div className="absolute top-0 bottom-0 -left-10 w-px bg-gray-200"></div>
         <div className="absolute top-0 bottom-0 left-110 w-px bg-gray-200"></div>
@@ -100,9 +101,9 @@ const Editing = () => {
             {getSubstringBetween(pageData?.text, 'editing', 'We')}
           </h1>
 
-          <p
+          <p style={{color:background === "Light" ? "gray" : "#fff"}}
             className={`z-10 mx-auto leading-relaxed tracking-wide max-w-130 text-[18px] mt-4 
-                        ${background === "Light" ? "text-gray-600" : "text-white"}`}
+                        `}
           >
             {getSubstringBetween(pageData?.text, 'tools', 'without')} <br /> {pageData?.text?.substring(91)}
           </p>

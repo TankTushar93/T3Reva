@@ -4,6 +4,7 @@ import { useSidebar } from "../context/Sidebarcontext";
 const Testimonial = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem("color");
+  const pcol = localStorage.getItem('pcolor');
   const [heading, setHeading] = useState("");
   const [reviews, setReviews] = useState([]);
 
@@ -73,16 +74,16 @@ const Testimonial = () => {
           <p className="text-gray-500">{card.reviewDesignation}</p>
         </div>
         <div className="flex text-center gap-1 flex-col items-center leading-none">
-          <p className="text-[#4c6fff] font-semibold text-[20px] m-0 p-0 leading-none"> {card.reviewStar} </p>
+          <p style={{color : pcol}} className=" font-semibold text-[20px] m-0 p-0 leading-none"> {card.reviewStar} </p>
           <div className="flex gap-0 leading-none">
             {Array(5).fill(0).map((_, i) => {
               const fullStars = Math.floor(card.reviewStar);
               const hasHalfStar = card.reviewStar - fullStars >= 0.25 && card.reviewStar - fullStars < 0.75;
               if (i < fullStars) {
-                return (<span key={i} className="inline-block text-[19px] text-[#4c6fff]" > ★ </span>);
+                return (<span key={i} style={{color : pcol}}  className="inline-block text-[19px] " > ★ </span>);
               } else if (i === fullStars && hasHalfStar) {
                 return (<span key={i} className="inline-block text-[19px] text-gray-300 relative" >
-                  <span className="absolute left-0 top-0 w-1/2 overflow-hidden text-[#4c6fff]"> ★ </span> ★ </span>);
+                  <span style={{color : pcol}}  className="absolute left-0 top-0 w-1/2 overflow-hidden "> ★ </span> ★ </span>);
               }
               else { return (<span key={i} className="inline-block text-[19px] text-gray-300" > ★ </span>); }
             })}
@@ -96,14 +97,14 @@ const Testimonial = () => {
   );
 
   return (
-    <div style={{ backgroundColor: col }} className="bg-[#61dcdf] px-3 pt-24 pb-48"> {/* Heading */} {!reviews ? (<div className="h-10 w-2/3 mx-auto bg-gray-300 rounded shimmer animate-pulse" />) : (<h1 className="text-center text-white font-extrabold text-[41px] whitespace-pre-line"> {heading} </h1>)}
+    <div style={{ backgroundColor: col }} className=" px-3 pt-24 pb-48"> {/* Heading */} {!reviews ? (<div className="h-10 w-2/3 mx-auto bg-gray-300 rounded shimmer animate-pulse" />) : (<h1 className="text-center text-white font-extrabold text-[41px] whitespace-pre-line"> {heading} </h1>)}
 
       {/* Carousel Section */}
       <div className="relative flex justify-center items-center w-full">
         {/* Left Button */}
         <button
           onClick={() => scroll("left")}
-          className="absolute top-127 right-63 lg:right-37 lg:-top-4 -translate-y-1/2 bg-white shadow-md hover:bg-gray-100 text-gray-800 rounded-full w-15 h-15 flex items-center justify-center z-10"
+          className="absolute top-127 right-63 lg:right-37 lg:-top-4 -translate-y-1/2 bg-white shadow-md hover:bg-gray-100 cursor-pointer text-gray-800 rounded-full w-15 h-15 flex items-center justify-center z-10"
         >
           ◀
         </button>
@@ -122,7 +123,7 @@ const Testimonial = () => {
         
         <button
           onClick={() => scroll("right")}
-          className="absolute top-127 right-36 lg:right-15 lg:-top-4 -translate-y-1/2 bg-white shadow-md hover:bg-gray-100 text-gray-800 rounded-full w-15 h-15 flex items-center justify-center z-10"
+          className="absolute top-127 cursor-pointer right-36 lg:right-15 lg:-top-4 -translate-y-1/2 bg-white shadow-md hover:bg-gray-100 text-gray-800 rounded-full w-15 h-15 flex items-center justify-center z-10"
         >
           ▶
         </button>

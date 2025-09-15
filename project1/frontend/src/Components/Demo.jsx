@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useSidebar } from "../context/Sidebarcontext";
 
 const Demo = () => {
-  const {background} = useSidebar();
+  const {background,pageStripeVisible} = useSidebar();
   const [pageData,setPageData] = useState(null);
   const col = localStorage.getItem('color')
+  const pcol = localStorage.getItem('pcolor');
+   const gcol = localStorage.getItem('gcolor');
 
   useEffect(()=>{
     fetch('https://t3-reva.t3planet.de/')
@@ -21,12 +23,12 @@ const Demo = () => {
                         for (let key in o) {
                             if (key === 'id' && o[key] === id) {
                                 result = o;
-                                return; // Stop once found
+                                return; 
                             }
 
                             if (typeof o[key] === 'object') {
                                 search(o[key]);
-                                if (result) return; // Stop if found
+                                if (result) return;
                             }
                         }
                     }
@@ -79,13 +81,15 @@ const Demo = () => {
 
   
   return (
-    <div style={{backgroundColor:background === 'Light' ? '#fff' : col}} className={`w-full  relative   py-24 text-center`}>
+    <div style={{backgroundColor:background === 'Light' ? '#fff' : col}} className={`w-full  relative z-10  py-24 text-center`}>
 
-      {/* <div className="pointer-events-none hidden lg:block absolute inset-0 mx-auto w-full max-w-7xl z-[-1]">
+    {pageStripeVisible &&  background === 'Light' &&
+    <div className="pointer-events-none hidden lg:block absolute inset-0 mx-auto w-full max-w-7xl z-[-1]">
         <div className="absolute top-0 bottom-0 -left-10 w-px bg-gray-200 -z-10"></div>
         <div className="absolute top-0 bottom-0 left-110 w-px bg-gray-200 z-0"></div>
         <div className="absolute top-0 bottom-0 right-91 w-[0.5px] bg-gray-200 z-0"></div>
-      </div> */}
+      </div>}
+      
 
       
         <h1 style={{color: background === 'Dark' ? '#fff' : col}} className={`text-[39px]  font-extrabold `}>
@@ -96,7 +100,7 @@ const Demo = () => {
        {getSubstringBetween(pageData?.text, "one-click", "Set")}
       </h1>
 
-      <p className={`${background === 'Light' ? 'text-gray-600' : 'text-white'}  leading-relaxed tracking-wide mx-auto max-w-88 text-[18px] mt-4`}>
+      <p style={{color: background === 'Light' ? 'gray' : '#fff'}} className={`  leading-relaxed tracking-wide mx-auto max-w-88 text-[18px] mt-4`}>
         {getSubstringBetween(pageData?.text, "install", "just ")}<br/>
         {pageData?.text?.substring(68)}
       </p>
@@ -104,7 +108,7 @@ const Demo = () => {
       <div className="grid grid-rows lg:flex px-48 mt-8 justify-center gap-19 xl:gap-69 items-start  py-6 relative">
         <div className="flex flex-col mb-12 items-center relative">
           <div className=" w-50 gap-20">
-            <div className="w-25 cursor-pointer ml-12 h-25 flex items-center justify-center  bg-blue-500 text-white text-4xl font-bold  transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_0_5px_#93c5fd,0_0_0_10px_#bfdbfe,0_0_20px_rgba(59,130,246,0.5)]">
+            <div style={{backgroundColor: pcol}} className="w-25 cursor-pointer ml-12 h-25 flex items-center justify-center   text-white text-4xl font-bold  transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_0_5px_#93c5fd,0_0_0_10px_#bfdbfe,0_0_20px_rgba(59,130,246,0.5)]">
              {pageData?.num1}
             </div>
             <p style={{color: background === 'Dark' ? '#fff' : col}} className={`mt-10 text-2xl  font-bold`}>{pageData?.text1}</p>
@@ -141,7 +145,7 @@ const Demo = () => {
 
         <div className="flex  w-90 flex-col items-center relative">
           <div className=" mt-16 w-50 gap-20">
-            <div className="w-25 cursor-pointer ml-12 h-25 flex items-center justify-center bg-blue-500 text-white text-4xl font-bold  transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_0_5px_#93c5fd,0_0_0_10px_#bfdbfe,0_0_20px_rgba(59,130,246,0.5)]">
+            <div style={{backgroundColor: pcol}} className="w-25 cursor-pointer ml-12 h-25 flex items-center justify-center text-white text-4xl font-bold  transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_0_5px_#93c5fd,0_0_0_10px_#bfdbfe,0_0_20px_rgba(59,130,246,0.5)]">
               {pageData?.num2}
             </div>
             <p style={{color: background === 'Dark' ? '#fff' : col}} className={`mt-10 text-2xl font-bold`}>{pageData?.text2}</p>
@@ -177,7 +181,7 @@ const Demo = () => {
 
         <div className="flex flex-col items-center relative">
           <div className=" mt-8 w-50 gap-20">
-            <div className="w-25 cursor-pointer  ml-12 mt-24 h-25 flex items-center justify-center  bg-blue-500 text-white text-4xl font-bold  transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_0_5px_#93c5fd,0_0_0_10px_#bfdbfe,0_0_20px_rgba(59,130,246,0.5)]">
+            <div style={{backgroundColor: pcol}} className="w-25 cursor-pointer  ml-12 mt-24 h-25 flex items-center justify-center text-white text-4xl font-bold  transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_0_5px_#93c5fd,0_0_0_10px_#bfdbfe,0_0_20px_rgba(59,130,246,0.5)]">
                {pageData?.num3}
             </div>
             <p style={{color: background === 'Dark' ? '#fff' : col}} className={`mt-10 text-2xl font-bold`}>{pageData?.text3}</p>

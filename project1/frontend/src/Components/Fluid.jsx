@@ -3,8 +3,9 @@ import { useSidebar } from "../context/Sidebarcontext";
 import { lighten } from "polished";
 
 const Fluid = () => {
-  const {background,layout} = useSidebar();
+  const {background,layout,pageStripeVisible} = useSidebar();
   const col = localStorage.getItem('color')
+   const gcol = localStorage.getItem('gcolor');
   const [section, setSection] = useState(null);
   const [features, setFeatures] = useState([]);
   const [images, setImages] = useState([]);
@@ -81,9 +82,9 @@ const Fluid = () => {
   }
 
   return (
-    <div style={{backgroundColor:background === 'Light' ? '#fff' : lighten(0.26,col)}} className={` relative w-full flex items-center px-4 py-10`}>
+    <div style={{backgroundColor:background === 'Light' ? lighten(0.35,gcol) : lighten(0.26,col)}} className={` relative w-full flex items-center px-4 py-10`}>
 
-    {background === 'Light' && layout === 'Wide' &&
+    {background === 'Light' && layout === 'Wide' && pageStripeVisible &&
      <div className="pointer-events-none hidden lg:block absolute inset-0 mx-auto w-full max-w-7xl z-0">
         <div className="absolute top-0 bottom-0 -left-10 w-px bg-gray-200 "></div>
         <div className="absolute top-0 bottom-0 left-110 w-px bg-gray-200 "></div>
@@ -113,8 +114,8 @@ const Fluid = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex justify-center lg:justify-between gap-6 mt-10 sm:mt-16 w-full">
             { features.map((feature) => (
                   <div
-                    key={feature.id}
-                    className={`text-center ${background === 'Light' ? '' : 'bg-gray-100'}  p-10 lg:text-left flex-1`}
+                    key={feature.id} style={{backgroundColor:background === 'Light' ? lighten(0.34,gcol) : lighten(0.39,gcol)}}
+                    className={`text-center   p-10 lg:text-left flex-1`}
                   >
                     <img
                       className="mx-auto lg:mx-0 w-14 h-14 md:w-16 md:h-16"

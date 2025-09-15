@@ -32,7 +32,7 @@ const Sidebar = () => {
         setScolor('#61DCDF');
         setTextcolor('#617798');
         setTeriotarycolor('#F43FE2');
-        setGraycolor('#CDCBCB');
+        setGraycolor('#9d9b9b');
         setHeaderMenu('Without Topbar');
         setFooterMenu('Large Footer');
         setFontfamily('Work Sans');
