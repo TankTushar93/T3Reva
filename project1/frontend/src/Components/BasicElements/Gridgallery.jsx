@@ -5,7 +5,7 @@ import { useState,useEffect } from 'react';
 const Gridgallery = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem("color");
-
+   const tcol = localStorage.getItem('tcolor');
   const [gridData, setGridData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -74,7 +74,7 @@ const Gridgallery = () => {
        {gridData.title}
       </h1>
 
-      <p style={{color:background === 'Dark' ? '#fff' : 'gray'}} className="text-gray-500 text-center leading-relaxed tracking-wide mx-auto max-w-240 text-[20px] mt-2">
+      <p style={{color:background === 'Dark' ? '#fff' : tcol}} className="text-gray-500 text-center leading-relaxed tracking-wide mx-auto max-w-240 text-[20px] mt-2">
         {gridData.description}
       </p>
 

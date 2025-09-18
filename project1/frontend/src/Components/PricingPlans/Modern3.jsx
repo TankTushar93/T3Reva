@@ -6,7 +6,7 @@ import { lighten } from "polished";
 const Modern3 = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem("color");
-
+   const tcol = localStorage.getItem('tcolor');
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState("");
@@ -69,10 +69,10 @@ const Modern3 = () => {
       </h1>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-1 items-center justify-center w-full gap-24 lg:gap-6 xl:gap-10 px-4 xl:px-24 py-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-1 items-center justify-center w-full gap-36 lg:gap-6 xl:gap-10 px-4 xl:px-24 py-12">
         {plans.map((plan, index) => (
           <div key={index} className="relative flex items-center  w-full lg:w-80 xl:w-full justify-center">
-            <div className="h-auto w-92 relative px-10 py-10 z-10 bg-white ">
+            <div className="h-auto w-full lg:w-92 relative px-10 py-10 z-10 bg-white ">
              
               <p style={{ color: col }} className="text-4xl inline font-bold">
                 ${plan.discount === "1" ? plan.discountPrice : plan.price}
@@ -83,7 +83,8 @@ const Modern3 = () => {
                 {plan.title}
               </h1>
 
-              <p className="mt-5 text-lg text-gray-500">{plan.description}</p>
+              <p   style={{color: tcol}}
+ className="mt-5 text-lg text-gray-500">{plan.description}</p>
 
               <hr className="mt-6 text-gray-200" />
 
@@ -113,7 +114,8 @@ const Modern3 = () => {
                         <path d="M512 42C246 42 42 246 42 512s204 470 470 470 470-204 470-470S778 42 512 42zm215.3 631.6a32 32 0 0 1-45.3 0L512 523.3 341.9 673.6a32 32 0 0 1-45.3-45.3L466.7 478 296.6 307.9a32 32 0 1 1 45.3-45.3L512 432.7l170.1-170.1a32 32 0 0 1 45.3 45.3L557.3 478l170.1 170.1a32 32 0 0 1 0 45.3z"></path>
                       </svg>
                     )}
-                    <p className="text-lg text-gray-500">{item.title}</p>
+                    <p   style={{color: tcol }}
+ className="text-lg text-gray-500">{item.title}</p>
                   </div>
                 ))}
               </div>
@@ -123,7 +125,7 @@ const Modern3 = () => {
               style={{
                 backgroundColor: plan.title === "Professional" ? col : "oklch(96.7% 0.003 264.542)",
               }}
-              className={`absolute z-0 flex items-center justify-center w-74 sm:w-92  min-[773px]:w-75 min-[817px]:w-79 min-[868px]:w-86 min-[917px]:w-92 min-[1002px]:w-92 lg:w-80 xl:w-85  lg:left-0 xl:left-18 ${
+              className={`absolute z-0 flex items-center justify-center w-full xl:w-85  lg:left-0 xl:left-18 ${
                 plan.title === "Professional" ? "top-14 h-120" : "top-10 h-124"
               } `}
             >
@@ -131,8 +133,8 @@ const Modern3 = () => {
                 <a
                   href={plan.buttonLink?.href || "#"}
                   className={`${
-                    plan.title === "Professional" ? "mt-106 text-white" : "mt-110"
-                  } items-center justify-center gap-3 group ml-28 flex text-blue-500 text-right py-2 px-4 cursor-pointer`}
+                    plan.title === "Professional" ? "mt-106 text-white" : "mt-105 lg:mt-110"
+                  } mx-auto items-center justify-center gap-3 group lg:ml-28 flex text-blue-500 lg:text-right py-2 px-4 cursor-pointer`}
                 >
                   {plan.buttonLabel}{" "}
                   <FaArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-2" />

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IoIosArrowDown } from "react-icons/io";
 import { FiSearch } from "react-icons/fi";
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdOutlineCancel } from "react-icons/md";
 import { AiOutlineMenu } from "react-icons/ai";
@@ -15,6 +15,8 @@ const Navbar = () => {
     const col = localStorage.getItem('color');
     const pcol = localStorage.getItem('pcolor');
     const gcol = localStorage.getItem('gcolor');
+    const tcol = localStorage.getItem('tcolor');
+    const navigate = useNavigate()
     const [navitems, setNavitems] = useState([]);
     const [hoveredChild, setHoveredChild] = useState(null);
     const [isopen, setIsopen] = useState(false);
@@ -65,18 +67,18 @@ const Navbar = () => {
                 color: background === 'Dark' ? '#fff' : headerMenu === 'Default' || headerMenu === 'Without Topbar' || headerMenu === 'Full Width' || headerMenu === 'Full Width Without Topbar' ? 'black' : '#fff'
 
             }}
-                className={`fixed top-0 left-0 w-full z-[9999] px-3 ${headerMenu === 'Full Width' || headerMenu === 'Full Width Without Topbar' || headerMenu === 'Full Width Transparent' ? 'px-0' : 'lg:px-21'} border-b border-white py-[29px] font-sans flex justify-between items-center hover:text-gray-800`}>
+                className={`sticky top-0 left-0 w-full z-[9999] px-3 ${headerMenu === 'Full Width' || headerMenu === 'Full Width Without Topbar' || headerMenu === 'Full Width Transparent' ? 'px-0' : 'lg:px-21'} border-b border-white py-[29px] font-sans flex justify-between items-center hover:text-gray-800`}>
 
-                <img src="https://t3-reva.t3planet.com/fileadmin/t3-reva/Logo/T3_Reva_Final_Logo.svg" className='cursor-pointer' alt="logo" />
+                <img onClick={()=>navigate('/')} src="https://t3-reva.t3planet.com/fileadmin/t3-reva/Logo/T3_Reva_Final_Logo.svg" className='cursor-pointer' alt="logo" />
 
                 <div className=' hidden lg:flex gap-9 mr-4 justify-center items-center'>
                     {navitems.map((item) => (
                         <div key={item.data.uid} style={{
                             backgroundColor: background === 'Dark' ? col : headerMenu === 'Default' || headerMenu === 'Without Topbar' || headerMenu === 'Full Width' || headerMenu === 'Full Width Without Topbar' ? '#fff' : col,
-                            color: background === 'Dark' ? '#fff' : headerMenu === 'Default' || headerMenu === 'Without Topbar' || headerMenu === 'Full Width' || headerMenu === 'Full Width Without Topbar' ? 'gray' : '#fff'
+                            color: background === 'Dark' ? '#fff' : headerMenu === 'Default' || headerMenu === 'Without Topbar' || headerMenu === 'Full Width' || headerMenu === 'Full Width Without Topbar' ? tcol : '#fff'
                         }}
-                            className={`relative flex group gap-2 justify-center items-center   hover:text-black cursor-pointer `}>
-                            <NavLink to={item.data.slug} className='cursor-pointer hover:text-black  font-normal'>
+                            className={`relative flex group gap-2 justify-center items-center hover:text-black cursor-pointer `}>
+                            <NavLink style={{color:background === "Light" ? tcol : "#fff"}} to={item.data.slug} className='cursor-pointer hover:text-black  font-normal'>
                                 {item.title}
                             </NavLink>
 
@@ -89,7 +91,7 @@ const Navbar = () => {
                             {item.children && item.children.length > 0 && (
                                 <div style={{
                                     backgroundColor: background === 'Light' ? '#fff' : col,
-                                    color: background === 'Light' ? 'gray' : '#fff'
+                                    color: background === 'Light' ? tcol : '#fff'
                                 }}
                                     className={`absolute top-full hidden mr-14  group-hover:flex  z-50`}>
                                     {/*---------- {Check If ELements then w-full} -------------*/}
@@ -102,10 +104,10 @@ const Navbar = () => {
                                                     </Link>
                                                     <div className='flex flex-col gap-3'>
                                                         {child.children?.map((sub) => (
-                                                            <NavLink 
+                                                            <NavLink  style={{color:background === "Light" ? tcol : "#fff"}}
                                                                 key={sub.data.uid}
                                                                 to={sub.data.slug}
-                                                                className={`relative inline-block ${background === 'Light' ? 'text-gray-500' : 'text-white'}  after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-blue-500 after:w-0 after:origin-left after:transition-all after:duration-300 hover:after:w-25 hover:after:origin-right`}
+                                                                className={`relative inline-block  after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-blue-500 after:w-0 after:origin-left after:transition-all after:duration-300 hover:after:w-25 hover:after:origin-right`}
                                                             >
                                                                 {sub.title}
                                                             </NavLink>
@@ -124,9 +126,9 @@ const Navbar = () => {
                                                     className='relative'
                                                 >
                                                     <div className='flex group justify-between items-center'>
-                                                        <Link
+                                                        <Link style={{color:background === "Light" ? tcol : "#fff"}}
                                                             to={child.data.slug}
-                                                            className={`relative inline-block ${background === 'Light' ? 'text-gray-500' : 'text-white'} after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-blue-500 after:w-0 after:origin-left after:transition-all after:duration-300 hover:after:w-25 hover:after:origin-right`}
+                                                            className={`relative inline-block after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-blue-500 after:w-0 after:origin-left after:transition-all after:duration-300 hover:after:w-25 hover:after:origin-right`}
                                                         >
                                                             {child.title}
                                                         </Link>

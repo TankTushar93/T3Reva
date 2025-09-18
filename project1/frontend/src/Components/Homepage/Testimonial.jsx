@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useSidebar } from "../context/Sidebarcontext";
+import { useSidebar } from "../../context/Sidebarcontext";
 
 const Testimonial = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem("color");
   const pcol = localStorage.getItem('pcolor');
+   const tcol = localStorage.getItem('tcolor');
   const [heading, setHeading] = useState("");
   const [reviews, setReviews] = useState([]);
 
@@ -71,7 +72,7 @@ const Testimonial = () => {
       <div className="flex items-center pb-4 justify-between">
         <div>
           <p className="text-black font-normal text-lg">{card.reviewName}</p>
-          <p className="text-gray-500">{card.reviewDesignation}</p>
+          <p style={{color: tcol }} className="">{card.reviewDesignation}</p>
         </div>
         <div className="flex text-center gap-1 flex-col items-center leading-none">
           <p style={{color : pcol}} className=" font-semibold text-[20px] m-0 p-0 leading-none"> {card.reviewStar} </p>
@@ -91,7 +92,7 @@ const Testimonial = () => {
         </div>
       </div>
       <div>
-        <p className="leading-relaxed tracking-wide text-gray-500 py-4 text-xl"> {card.reviewText} </p>
+        <p style={{color: tcol }} className="leading-relaxed tracking-wide  py-4 text-xl"> {card.reviewText} </p>
       </div>
     </div>
   );

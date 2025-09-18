@@ -4,7 +4,7 @@ import { lighten } from "polished";
 const Effective = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem("color");
-
+  const tcol = localStorage.getItem('tcolor');
   const [isOpen, setIsOpen] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -90,7 +90,7 @@ const Effective = () => {
 
   if (loading) {
     return (
-      <div className="w-full flex justify-center items-center py-20 text-gray-500">    </div>
+      <div className="w-full flex justify-center items-center py-20 text-gray-500"></div>
     );
   }
 
@@ -112,7 +112,7 @@ const Effective = () => {
         </h3>
 
         <p
-          style={{ color: background === "Dark" ? "#fff" : "gray" }}
+          style={{ color: background === "Dark" ? "#fff" : tcol }}
           className="text-gray-500 leading-relaxed tracking-wide max-w-[550px] text-[15px] sm:text-[16px] md:text-[18px] mt-3 sm:mt-8"
         >
           {data.description}

@@ -5,7 +5,7 @@ import { lighten } from "polished";
 const LeaderSupport = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem("color");
-
+   const tcol = localStorage.getItem('tcolor'); 
   const [isOpen, setIsOpen] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -162,11 +162,13 @@ const LeaderSupport = () => {
           className="text-base sm:text-lg leading-relaxed tracking-wide mt-6 mb-8 space-y-3"
         >
           {textData.listItems.map((item, index) => (
-            <li
+            <li   style={{color:background === "Light" ? tcol : "#fff"}}
+
               key={index}
               className="flex items-start sm:items-center gap-2 sm:gap-4 text-left"
             >
-              <span className="text-gray-500 text-lg">✔</span>
+              <span   style={{color:background === "Light" ? tcol : "#fff"}}
+ className=" text-lg">✔</span>
               {item.replace("✔", "").trim()}
             </li>
           ))}

@@ -5,7 +5,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 const StartupPromo3 = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem("color");
-
+   const tcol = localStorage.getItem('tcolor');
   const [isOpen, setIsOpen] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -76,7 +76,7 @@ const StartupPromo3 = () => {
   }, []);
 
   if (loading) {
-    return <div className="w-full text-center py-20 text-gray-500">Loading...</div>;
+    return <div className="w-full text-center py-20 bg-gray-500"></div>;
   }
 
   return (

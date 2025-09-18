@@ -4,7 +4,7 @@ import { useSidebar } from "../../context/Sidebarcontext";
 const EnergySolutions = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem("color");
-
+  const tcol = localStorage.getItem('tcolor');
   const [isOpen, setIsOpen] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -92,7 +92,7 @@ const EnergySolutions = () => {
             <h3 style={{ color: col }} className="mt-2 text-[24px] font-semibold">
               {service.title}
             </h3>
-            <p className="mt-2 text-gray-500 text-lg sm:text-xl leading-relaxed tracking-wide max-w-[270px]">
+            <p style={{color: tcol }} className="mt-2 text-gray-500 text-lg sm:text-xl leading-relaxed tracking-wide max-w-[270px]">
               {service.description}
             </p>
           </div>

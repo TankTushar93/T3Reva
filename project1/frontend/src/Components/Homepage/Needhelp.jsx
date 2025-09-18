@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useSidebar } from '../context/Sidebarcontext';
+import { useSidebar } from '../../context/Sidebarcontext';
 import { lighten } from 'polished';
 
 const Needhelp = () => {
     const {background,layout,pageStripeVisible} = useSidebar();
     const col = localStorage.getItem('color')
      const gcol = localStorage.getItem('gcolor');
+      const tcol = localStorage.getItem('tcolor');
   const [section, setSection] = useState(null);
   const [features, setFeatures] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -89,7 +90,7 @@ const Needhelp = () => {
       </h1>
 
       {/* Section Sub Text */}
-      <p className={`${background === "Light" ? "text-gray-600" : "text-white"} z-10 mx-auto max-w-170 leading-relaxed tracking-wide text-base sm:text-lg mt-4 px-2`}>
+      <p style={{color:background === "Light" ? tcol : "#fff"}} className={` z-10 mx-auto max-w-170 leading-relaxed tracking-wide text-base sm:text-lg mt-4 px-2`}>
         {section?.text.substring(0, 75)} <br />
         {section?.text.substring(75)}
       </p>
@@ -112,14 +113,14 @@ const Needhelp = () => {
                 </h1>
 
                 {/* Description */}
-                <p className="text-left text-gray-500 leading-relaxed tracking-wide font-medium text-base sm:text-lg">
+                <p style={{color: tcol }} className="text-left  leading-relaxed tracking-wide font-medium text-base sm:text-lg">
                   {feat?.desc}
                 </p>
 
                 {/* Bullets */}
                 <div className="flex flex-col gap-3">
                   {feat.bullets.map((bull, i) => (
-                    <p
+                    <p style={{color: tcol }}
                       key={i}
                       className="flex items-center gap-2 md:gap-3 leading-relaxed tracking-wide font-medium text-gray-500 text-sm sm:text-base"
                     >

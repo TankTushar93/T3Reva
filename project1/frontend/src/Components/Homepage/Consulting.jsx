@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { FaArrowRight } from "react-icons/fa6";
-import { useSidebar } from "../context/Sidebarcontext";
+import { useSidebar } from "../../context/Sidebarcontext";
 
 const Consulting = () => {
   const {background,pageStripeVisible} = useSidebar();
   const col = localStorage.getItem('color')
+   const tcol = localStorage.getItem('tcolor');
   const [section, setSection] = useState(null);
   const [features, setFeatures] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -106,7 +107,7 @@ const Consulting = () => {
             {section?.heading.substring(29)}
           </h1>
 
-          <p className={`${background === 'Light' ? 'text-gray-600' : 'text-white'} mx-auto max-w-125 leading-relaxed tracking-wide text-[18px] mt-8`}>
+          <p style={{color:background === "Light" ? tcol : "#fff"}} className={` mx-auto max-w-125 leading-relaxed tracking-wide text-[18px] mt-8`}>
             {section?.text.substring(0, 56)} <br />
             {section?.text.substring(56)}
           </p>
@@ -125,15 +126,15 @@ const Consulting = () => {
                   <h1 style={{color: col}} className="text-left text-[22px] font-medium">
                     {item.title}
                   </h1>
-                  <p className="text-left text-[18px] text-gray-500 font-medium">
+                  <p style={{color: tcol }} className="text-left text-[18px] font-medium">
                     {item.desc}
                   </p>
                   <div className="flex mt-2  group cursor-pointer gap-1 items-center hover:text-blue-500">
                     <div className="flex flex-col px-3 py-7 gap-3">
                       {item.bullets.map((bullet, i) => (
-                        <p
+                        <p style={{color: tcol}}
                           key={i}
-                          className="flex items-center gap-5 leading-relaxed tracking-wide font-medium text-[15px] text-gray-500"
+                          className="flex items-center gap-5 leading-relaxed tracking-wide font-medium text-[15px] "
                         >
                           <img
                             className="h-4 w-4"

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSidebar } from "../context/Sidebarcontext";
+import { useSidebar } from "../../context/Sidebarcontext";
 
 const Demo = () => {
   const {background,pageStripeVisible} = useSidebar();
@@ -7,6 +7,7 @@ const Demo = () => {
   const col = localStorage.getItem('color')
   const pcol = localStorage.getItem('pcolor');
    const gcol = localStorage.getItem('gcolor');
+    const tcol = localStorage.getItem('tcolor');
 
   useEffect(()=>{
     fetch('https://t3-reva.t3planet.de/')
@@ -100,7 +101,7 @@ const Demo = () => {
        {getSubstringBetween(pageData?.text, "one-click", "Set")}
       </h1>
 
-      <p style={{color: background === 'Light' ? 'gray' : '#fff'}} className={`  leading-relaxed tracking-wide mx-auto max-w-88 text-[18px] mt-4`}>
+      <p style={{color: background === 'Light' ? tcol : '#fff'}} className={`  leading-relaxed tracking-wide mx-auto max-w-88 text-[18px] mt-4`}>
         {getSubstringBetween(pageData?.text, "install", "just ")}<br/>
         {pageData?.text?.substring(68)}
       </p>

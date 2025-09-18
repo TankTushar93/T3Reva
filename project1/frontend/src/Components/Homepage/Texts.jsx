@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSidebar } from '../context/Sidebarcontext';
+import { useSidebar } from '../../context/Sidebarcontext';
 import { lighten } from 'polished';
 const Texts = () => {
   const { background,pageStripeVisible } = useSidebar();
@@ -9,6 +9,7 @@ const Texts = () => {
   const col = localStorage.getItem('color');
   const pcol = localStorage.getItem('pcolor');
    const gcol = localStorage.getItem('gcolor');
+   const tcol = localStorage.getItem('tcolor');
    const terocol = localStorage.getItem('tercolor');
 
 
@@ -86,7 +87,7 @@ const Texts = () => {
         </span>
       </h1>
 
-      <p style={{color:background === 'Light' ? 'gray' : '#fff'}}
+      <p style={{color:background === 'Light' ? tcol : '#fff'}}
         className={`mt-3 max-w-140 font-mono leading-relaxed tracking-wide  text-lg`}
       >
         {section.paragraph}

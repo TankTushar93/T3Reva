@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useSidebar } from '../context/Sidebarcontext';
+import { useSidebar } from '../../context/Sidebarcontext';
 
 const FAQ = () => {
   const { background, layout ,pageStripeVisible} = useSidebar();
-  const col = localStorage.getItem('color')
+  const col = localStorage.getItem('color');
+   const tcol = localStorage.getItem('tcolor');
   const [faq, setFaq] = useState({ heading: "", text: "", items: [] });
   const [open, setOpen] = useState(null); // Track currently opened index
   const [loading, setLoading] = useState(true);
@@ -82,7 +83,7 @@ const FAQ = () => {
 
       {/* Sub Text */}
       
-        <p className={`mt-7 max-w-149 font-mono leading-relaxed tracking-wide ${background === 'Light' ? 'text-gray-500' : 'text-white'}  text-lg`}>
+        <p style={{color:background === "Light" ? tcol : "#fff"}} className={`mt-7 max-w-149 font-mono leading-relaxed tracking-wide   text-lg`}>
           {faq?.text.substring(0, 68)} <br />
           {faq?.text.substring(68)}
         </p>
@@ -126,7 +127,7 @@ const FAQ = () => {
                   className={`transition-all duration-500 ease-in-out overflow-hidden ${open === index ? "max-h-[500px] py-4" : "max-h-0"
                     }`}
                 >
-                  <p className="text-gray-500 text-lg text-left leading-relaxed tracking-wide px-1">
+                  <p style={{color: tcol}} className=" text-lg text-left leading-relaxed tracking-wide px-1">
                     {item.content}
                   </p>
                 </div>
@@ -172,7 +173,7 @@ const FAQ = () => {
                   className={`transition-all duration-500 ease-in-out overflow-hidden ${open === actualIndex ? "max-h-[500px] py-4" : "max-h-0"
                     }`}
                 >
-                  <p className="text-gray-500 text-lg text-left leading-relaxed tracking-wide px-1">
+                  <p style={{color: tcol }} className=" text-lg text-left leading-relaxed tracking-wide px-1">
                     {item.content}
                   </p>
                 </div>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useSidebar } from '../../context/Sidebarcontext';
+import { useSidebar } from '../../../context/Sidebarcontext';
 import { lighten } from 'polished';
 import { Link } from 'react-router-dom';
 
-const Video = () => {
+const Carouselp = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem('color');
   const tcol = localStorage.getItem('tcolor');
@@ -69,13 +69,13 @@ const Video = () => {
             ? 'oklch(96.7% 0.003 264.542)'
             : lighten(0.24, col),
       }}
-      className="min-h-[440px] w-full flex flex-col justify-center items-center px-4 sm:px-6 md:px-10 text-center"
+      className="min-h-[360px] w-full flex flex-col justify-center items-center px-4 sm:px-6 md:px-10 text-center"
     >
       <h1
         style={{ color: background === 'Dark' ? '#fff' : col }}
         className="text-[28px] sm:text-[32px] md:text-[39px] font-extrabold leading-tight" //mt-10 md:mt-14
       >
-        {content.title}
+       Portfolio carousel
       </h1>
 
       <p
@@ -102,4 +102,4 @@ const Video = () => {
   );
 };
 
-export default Video;
+export default Carouselp;

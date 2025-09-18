@@ -9,6 +9,7 @@ const Footer = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem('color')
   const pcol = localStorage.getItem('pcolor');
+   const tcol = localStorage.getItem('tcolor');
   const [email, setEmail] = useState("");
   const [footeritems, setFooteritems] = useState([]);
   const [section, setSection] = useState(null);
@@ -111,10 +112,10 @@ const Footer = () => {
       <div className="grid grid-cols-1 lg:flex flex-wrap justify-between items-center lg:border-b border-gray-200 lg:pb-6 text-sm gap-2 lg:gap-4">
         <div className="grid grid-cols-1 gap-3 lg:flex lg:gap-6">
           { footeritems.map((item) => (
-              <NavLink
+              <NavLink style={{color:background === "Light" ? tcol : "#fff"}}
                 to={item?.data?.slug}
                 key={item?.data?.uid}
-                className={`grid grid-cols-1 cursor-pointer ${background === 'Light' ? 'text-gray-500' : 'text-white'}  md:flex leading-relaxed tracking-wide text-[15px] flex-wrap gap-4 lg:gap-6 cursor-pointer relative inline-block after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-blue-500 after:w-0 after:origin-left after:transition-all after:duration-300 hover:after:w-16 hover:after:origin-right`}
+                className={` grid-cols-1 cursor-pointer md:flex leading-relaxed tracking-wide text-[15px] flex-wrap gap-4 lg:gap-6  relative inline-block after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-blue-500 after:w-0 after:origin-left after:transition-all after:duration-300 hover:after:w-16 hover:after:origin-right`}
               >
                 {item?.title}
               </NavLink>
@@ -142,7 +143,7 @@ const Footer = () => {
              <img src={section?.logo} alt="" />
           </h2>
           
-            <p className={`${background === 'Light' ? 'text-gray-500' : 'text-white'} leading-relaxed tracking-wide text-[18px]`}>
+            <p style={{color:background === "Light" ? tcol : "#fff"}} className={` leading-relaxed tracking-wide text-[18px]`}>
               {section?.p}
             </p>
           
@@ -153,9 +154,9 @@ const Footer = () => {
           <h3 style={{ color: background === 'Dark' ? '#fff' : col }} className={`font-bold  mb-4`}>
             { aboutMenu.header}
           </h3>
-          <ul className="space-y-4">
+          <ul style={{color:background === "Light" ? tcol : "#fff"}} className="space-y-4">
             {aboutMenu.menu.map((item, i) => (
-                <li key={i}>
+                <li key={i} >
                   <a href={item.link} className="cursor-pointer relative inline-block after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-blue-500 after:w-0 after:origin-left after:transition-all after:duration-300 hover:after:w-25 hover:after:origin-right">
                     {item.title}
                   </a>
@@ -169,7 +170,7 @@ const Footer = () => {
           <h3 style={{ color: background === 'Dark' ? '#fff' : col }} className={`font-bold  mb-4`}>
             { resourcesMenu.header}
           </h3>
-          <ul className="space-y-4">
+          <ul style={{color:background === "Light" ? tcol : "#fff"}} className="space-y-4">
             {resourcesMenu.menu.map((item, i) => (
                 <li key={i}>
                   <a href={item.link} className="cursor-pointer relative inline-block after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-blue-500 after:w-0 after:origin-left after:transition-all after:duration-300 hover:after:w-25 hover:after:origin-right">
@@ -195,7 +196,8 @@ const Footer = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
                   required
-                  className="flex-1 px-4 text-gray-600 py-3 outline-none text-sm sm:text-base w-full"
+                  style={{color: tcol }}
+                  className="flex-1 px-4  py-3 outline-none text-sm sm:text-base w-full"
                 />
 
                 {/* Submit Button */}
@@ -215,7 +217,7 @@ const Footer = () => {
 
               <label className="mt-3 flex items-start gap-2 text-sm">
                 <input type="checkbox" className="mt-1" required />
-                <span className={`${background === 'Light' ? 'text-gray-500' : 'text-white'} font-medium `}>
+                <span style={{color:background === "Light" ? tcol : "#fff"}} className={` font-medium `}>
                   {newsletter.elements.find((el) => el.type === "Checkbox")?.label}
                 </span>
               </label>

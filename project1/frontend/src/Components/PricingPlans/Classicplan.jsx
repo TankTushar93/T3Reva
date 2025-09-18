@@ -5,7 +5,7 @@ import { lighten } from "polished";
 const Classicplan = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem("color");
-
+   const tcol = localStorage.getItem('tcolor');
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(true);
   const [tooltip, setTooltip] = useState({ visible: false, text: "", x: 0, y: 0 });
@@ -136,9 +136,8 @@ const Classicplan = () => {
             </div>
 
             {/* Description */}
-            <p
-              className={`mt-2 text-base sm:text-lg ${plan.heighlightColor === "1" ? "text-white" : "text-gray-500"
-                }`}
+            <p style={{color:plan.heighlightColor === "1" ? "#fff" : tcol}}
+              className={`mt-2 text-base sm:text-lg `}
             >
               {plan.description}
             </p>

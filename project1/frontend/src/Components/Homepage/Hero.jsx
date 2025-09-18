@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaArrowRightLong } from "react-icons/fa6";
 import './Hero.css';
-import { useSidebar } from '../context/Sidebarcontext';
+import { useSidebar } from '../../context/Sidebarcontext';
 
 const Hero = () => {
   const { setIsOpen, color, layout, background } = useSidebar();

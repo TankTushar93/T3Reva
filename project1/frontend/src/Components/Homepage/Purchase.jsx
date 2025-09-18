@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSidebar } from "../context/Sidebarcontext";
+import { useSidebar } from "../../context/Sidebarcontext";
 
 const Purchase = () => {
   const {background} = useSidebar();

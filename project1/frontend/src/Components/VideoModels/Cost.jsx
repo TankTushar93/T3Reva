@@ -73,7 +73,7 @@ const Cost = () => {
   return (
     <div
       style={{ backgroundColor: background === "Light" ? "#fff" : col }}
-      className="w-full px-4 sm:px-6 md:px-10 lg:px-10 py-12 sm:py-16 lg:py-24 flex flex-col justify-center items-center text-center gap-6 mx-auto max-w-screen-xl"
+      className="w-full px-4 sm:px-6 md:px-10 lg:px-10 py-12 sm:py-16 lg:py-24 flex flex-col justify-center items-center text-center gap-6 mx-auto "
     >
       {/* Heading */}
       <div className="w-full max-w-250 mt-4 text-center px-2">

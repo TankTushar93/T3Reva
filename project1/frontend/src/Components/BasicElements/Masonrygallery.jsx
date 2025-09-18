@@ -4,7 +4,7 @@ import { useSidebar } from "../../context/Sidebarcontext";
 const Masonrygallery = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem("color");
-
+   const tcol = localStorage.getItem('tcolor');
   const [galleryData, setGalleryData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -70,7 +70,7 @@ const Masonrygallery = () => {
       </h1>
 
       <p
-        style={{ color: background === "Dark" ? "#fff" : "gray" }}
+        style={{ color: background === "Dark" ? "#fff" : tcol }}
         className="text-gray-500 text-center leading-relaxed tracking-wide mx-auto max-w-240 text-[20px] mt-2"
       >
         {galleryData?.description}

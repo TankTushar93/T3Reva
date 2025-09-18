@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useSidebar } from "../context/Sidebarcontext";
+import { useSidebar } from "../../context/Sidebarcontext";
 import {lighten} from 'polished'
 const Ads = () => {
   const { background, layout ,pageStripeVisible} = useSidebar();
   const col = localStorage.getItem('color');
    const gcol = localStorage.getItem('gcolor');
+    const tcol = localStorage.getItem('tcolor');
   const [adData, setAdData] = useState(null);
 
   useEffect(() => {
@@ -120,10 +121,8 @@ const Ads = () => {
             {getSubstringBetween(adData.text, "Elements", "Each")}
           </h1>
 
-          <p
-            className={`mt-6 text-base md:text-[20px] w-full xl:max-w-135 leading-relaxed tracking-wide ${
-              background === "Light" ? "text-gray-500" : "text-white"
-            }`}
+          <p style={{color:background === "Light" ? tcol : "#fff"}}
+            className={`mt-6 text-base md:text-[20px] w-full xl:max-w-135 leading-relaxed tracking-wide `}
           >
             {adData.text?.substring(61)}
           </p>
@@ -139,17 +138,13 @@ const Ads = () => {
                     {item?.header?.counterData}
                     {item?.header?.counterAppendeg}
                   </h1>
-                  <p
-                    className={`mt-4 text-center font-semibold text-[22px] ${
-                      background === "Light" ? "text-gray-500" : "text-white"
-                    }`}
+                  <p style={{color:background === "Light" ? tcol : "#fff"}}
+                    className={`mt-4 text-center font-semibold text-[22px] `}
                   >
                     {item?.header?.headline}
                   </p>
-                  <p
-                    className={`max-w-49 mx-auto text-[18px] leading-relaxed ${
-                      background === "Light" ? "text-gray-500" : "text-white"
-                    }`}
+                  <p style={{color:background === "Light" ? tcol : "#fff"}}
+                    className={`max-w-49 mx-auto text-[18px] leading-relaxed `}
                   >
                     {item.text}
                   </p>

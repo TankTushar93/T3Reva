@@ -4,7 +4,7 @@ import { useSidebar } from "../../context/Sidebarcontext";
 const Pay = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem("color");
-
+  const tcol = localStorage.getItem('tcolor');
   const [headerContent, setHeaderContent] = useState({ heading: "", paragraph: "" });
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -80,7 +80,7 @@ const Pay = () => {
               </h1>
 
               <p
-                style={{ color: background === "Dark" ? "#fff" : "gray" }}
+                style={{ color: background === "Dark" ? "#fff" : tcol }}
                 className="text-gray-500 leading-relaxed tracking-wide max-w-[95%] text-base sm:text-lg mt-4 sm:mt-6"
               >
                 {headerContent.paragraph.substring(0, 45)} <br />
@@ -110,10 +110,12 @@ const Pay = () => {
                 <span className="font-bold">
                   {plan.discount === "1" ? plan.discountPrice : plan.price}
                 </span>
-                <span className="ml-1 text-lg text-gray-500">{plan.period}</span>
+                <span style={{ color: tcol }}
+                  className="ml-1 text-lg ">{plan.period}</span>
               </p>
 
-              <p className="mt-4 text-gray-500 text-base sm:text-lg">{plan.description}</p>
+              <p style={{ color: tcol }}
+                className="mt-4  text-base sm:text-lg">{plan.description}</p>
 
               <ul
                 style={{ color: col }}
@@ -136,10 +138,9 @@ const Pay = () => {
 
               <button
                 className={`mt-8 w-full sm:w-auto px-6 py-2.5 cursor-pointer font-medium rounded transition-colors duration-300 
-                  ${
-                    plan.heighlightColor === "1"
-                      ? "bg-indigo-500 text-white hover:bg-pink-400"
-                      : "border border-blue-500 text-blue-500 hover:border-pink-400 hover:bg-pink-400 hover:text-white"
+                  ${plan.heighlightColor === "1"
+                    ? "bg-indigo-500 text-white hover:bg-pink-400"
+                    : "border border-blue-500 text-blue-500 hover:border-pink-400 hover:bg-pink-400 hover:text-white"
                   }`}
               >
                 {plan.buttonLabel}

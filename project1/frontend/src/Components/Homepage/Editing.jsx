@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useSidebar } from '../context/Sidebarcontext';
+import { useSidebar } from '../../context/Sidebarcontext';
 import { lighten } from 'polished';
 
 const Editing = () => {
   const { background ,layout,pageStripeVisible} = useSidebar();
   const col = localStorage.getItem('color')
    const gcol = localStorage.getItem('gcolor');
+    const tcol = localStorage.getItem('tcolor');
   const [activetab, setActivetab] = useState('Builder');
   const [openMobileTab, setOpenMobileTab] = useState(null);
   const [pageData, setPageData] = useState(null);
@@ -101,7 +102,7 @@ const Editing = () => {
             {getSubstringBetween(pageData?.text, 'editing', 'We')}
           </h1>
 
-          <p style={{color:background === "Light" ? "gray" : "#fff"}}
+          <p style={{color:background === "Light" ? tcol : "#fff"}}
             className={`z-10 mx-auto leading-relaxed tracking-wide max-w-130 text-[18px] mt-4 
                         `}
           >
@@ -109,9 +110,7 @@ const Editing = () => {
           </p>
 
           {/* Desktop Tabs */}
-          <div className={`hidden z-10 lg:flex justify-center 
-                          ${background === "Light" ? "text-gray-500" : "text-white"} 
-                          lg:text-md xl:text-lg font-medium items-center mt-24 text-center`}>
+          <div style={{color:background === "Light" ? tcol : "#fff"}} className={`hidden z-10 lg:flex justify-center lg:text-md xl:text-lg font-medium items-center mt-24 text-center`}>
             <button
               onClick={() => setActivetab('Builder')}
               className={`border-b-3 leading-relaxed tracking-wide cursor-pointer font-semibold hover:text-blue-500  
@@ -163,7 +162,7 @@ const Editing = () => {
                   className={`transition-all duration-500 ease-in-out overflow-hidden 
                               ${openMobileTab === item.key ? 'max-h-[500px] p-4' : 'max-h-0'}`}
                 >
-                  <p className={`${background === "Light" ? "text-gray-600" : "text-[#61dcdf]"} text-left text-sm leading-relaxed tracking-wide`}>
+                  <p style={{color:background === "Light" ? tcol : "#fff"}} className={` text-left text-sm leading-relaxed tracking-wide`}>
                     {item.content}
                   </p>
                   <img src={item.img} alt={item.title} className="mt-4 w-full rounded-md" />

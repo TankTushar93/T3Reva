@@ -11,7 +11,7 @@ import "./slider.css";
 const SliderTran = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem("color");
-
+   const tcol = localStorage.getItem('tcolor');
   const [sliderData, setSliderData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -89,7 +89,7 @@ const SliderTran = () => {
       </h1>
 
       <p
-        style={{ color: background === "Dark" ? "#fff" : "gray" }}
+        style={{ color: background === "Dark" ? "#fff" : tcol }}
         className="text-center leading-relaxed tracking-wide mx-auto max-w-2xl text-[20px] mt-4"
       >
         {sliderData.description}

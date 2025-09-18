@@ -5,7 +5,7 @@ import { lighten } from "polished";
 const PricingCards = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem("color");
-
+   const tcol = localStorage.getItem('tcolor');
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -121,10 +121,11 @@ const PricingCards = () => {
               <span className="font-bold">
                 {plan.discount === "1" ? plan.discountPrice : plan.price}
               </span>
-              <span className="text-gray-500 text-lg">/{plan.period}</span>
+              <span   style={{color: tcol }}
+            className="text-gray-500 text-lg">/{plan.period}</span>
             </p>
 
-            <p className="mt-4 text-base sm:text-lg text-gray-500">{plan.description}</p>
+            <p style={{color: tcol }} className="mt-4 text-base sm:text-lg text-gray-500">{plan.description}</p>
 
             <ul
               style={{ color: col }}

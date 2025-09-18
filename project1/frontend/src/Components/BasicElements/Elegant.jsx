@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Elegant = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem('color');
-
+   const tcol = localStorage.getItem('tcolor');
   const [galleryData, setGalleryData] = useState(null);
   const [breadcrumbs, setBreadcrumbs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -73,14 +73,14 @@ const Elegant = () => {
       {/* Title */}
       <h1
         style={{ color: background === 'Dark' ? '#fff' : col }}
-        className="text-[28px] sm:text-[34px] md:text-[39px] font-extrabold mt-14 sm:mt-14"
+        className="text-[28px] sm:text-[34px] md:text-[39px] font-extrabold "
       >
         {galleryData?.title}
       </h1>
 
       {/* Description */}
       <p
-        style={{ color: background === 'Dark' ? '#fff' : 'gray' }}
+        style={{ color: background === 'Dark' ? '#fff' : tcol }}
         className="text-gray-500 leading-relaxed tracking-wide mx-auto max-w-[700px] text-[15px] sm:text-[17px] md:text-[18px] mt-4"
       >
         {galleryData?.description}
@@ -89,7 +89,7 @@ const Elegant = () => {
       {/*  Breadcrumbs */}
       <div
         className="flex flex-wrap justify-center gap-2 sm:gap-3 cursor-pointer mt-8 text-[13px] sm:text-[15px] md:text-[16px]"
-        style={{ color: background === 'Dark' ? '#fff' : 'gray' }}
+        style={{ color: background === 'Dark' ? '#fff' : tcol }}
       >
         {breadcrumbs.map((crumb, index) => (
           <span key={index} className="flex items-center gap-2">

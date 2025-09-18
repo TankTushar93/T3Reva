@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaArrowRight } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
-import { useSidebar } from '../context/Sidebarcontext';
+import { useSidebar } from '../../context/Sidebarcontext';
 import {lighten} from "polished";
 
 const Cards = () => {

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Flexible = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem('color');
-
+   const tcol = localStorage.getItem('tcolor');
   const [content, setContent] = useState({ title: '', description: '' });
   const [breadcrumbs, setBreadcrumbs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -72,14 +72,14 @@ const Flexible = () => {
       {/* Heading */}
       <h1
         style={{ color: background === 'Dark' ? '#fff' : col }}
-        className="text-[28px] sm:text-[32px] md:text-[39px] mt-10 md:mt-14 font-extrabold leading-tight"
+        className="text-[28px] sm:text-[32px] md:text-[39px]  font-extrabold leading-tight"
       >
         {content.title}
       </h1>
 
       {/* Description */}
       <p
-        style={{ color: background === 'Dark' ? '#fff' : 'gray' }}
+        style={{ color: background === 'Dark' ? '#fff' : tcol }}
         className="text-gray-500 leading-relaxed tracking-wide mx-auto max-w-[740px] text-[15px] sm:text-[16px] md:text-[18px] mt-3 sm:mt-4 px-3"
       >
         {content.description}
@@ -87,7 +87,7 @@ const Flexible = () => {
 
       {/* Breadcrumbs */}
       <div
-        style={{ color: background === 'Dark' ? '#fff' : 'gray' }}
+        style={{ color: background === 'Dark' ? '#fff' : tcol }}
         className="flex flex-wrap justify-center gap-1 text-sm sm:text-base cursor-pointer mt-6 sm:mt-8 md:mt-11"
       >
         {breadcrumbs.map((crumb, index) => (

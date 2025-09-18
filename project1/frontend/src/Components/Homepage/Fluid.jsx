@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useSidebar } from "../context/Sidebarcontext";
+import { useSidebar } from "../../context/Sidebarcontext";
 import { lighten } from "polished";
 
 const Fluid = () => {
   const {background,layout,pageStripeVisible} = useSidebar();
   const col = localStorage.getItem('color')
    const gcol = localStorage.getItem('gcolor');
+    const tcol = localStorage.getItem('tcolor');
   const [section, setSection] = useState(null);
   const [features, setFeatures] = useState([]);
   const [images, setImages] = useState([]);
@@ -106,7 +107,7 @@ const Fluid = () => {
                 {section?.heading.substring(30)}
               </h1>
 
-              <p className={`mt-6 sm:mt-8 text-sm sm:text-base md:text-lg ${background === 'Light' ? 'text-gray-500' : 'text-white'}  leading-relaxed tracking-wide max-w-[430px] mx-auto lg:mx-0`}>
+              <p style={{color:background === "Light" ? tcol : "#fff"}} className={`mt-6 sm:mt-8 text-sm sm:text-base md:text-lg  leading-relaxed tracking-wide max-w-[430px] mx-auto lg:mx-0`}>
                 {section?.text}
               </p>
           
@@ -125,7 +126,7 @@ const Fluid = () => {
                     <p style={{color:  col}} className="mt-6 sm:mt-8 font-medium text-lg sm:text-xl md:text-2xl">
                       {feature.title}
                     </p>
-                    <p className="text-gray-500 leading-relaxed tracking-wide font-medium mt-4 sm:mt-6 text-sm sm:text-base md:text-lg max-w-[280px] mx-auto lg:mx-0">
+                    <p style={{color: tcol }} className=" leading-relaxed tracking-wide font-medium mt-4 sm:mt-6 text-sm sm:text-base md:text-lg max-w-[280px] mx-auto lg:mx-0">
                       {feature.text}
                     </p>
                   </div>

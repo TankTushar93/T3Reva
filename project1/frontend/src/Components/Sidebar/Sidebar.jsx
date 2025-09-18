@@ -41,6 +41,7 @@ const Sidebar = () => {
         setSearchVisible(true);
         setLanguageVisible(true);
         setPageStripeVisible(true);
+        window.location.reload();
     }
     
     const onsubmit = () => {

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { FaArrowRight } from "react-icons/fa6";
-import { useSidebar } from '../context/Sidebarcontext';
+import { useSidebar } from '../../context/Sidebarcontext';
 
 
 
 const Integration = () => {
   const {background,pageStripeVisible} = useSidebar();
-  const col = localStorage.getItem('color')
+  const col = localStorage.getItem('color');
+   const tcol = localStorage.getItem('tcolor');
   const [items, setItems] = useState([]);
   const [heading, setHeading] = useState('');
   
@@ -90,7 +91,7 @@ const Integration = () => {
         </span>
       </h1>
 
-      <p className={`${background === 'Light' ? 'text-gray-500' : 'text-white'} mx-auto max-w-115 leading-relaxed tracking-wide text-[18px] mt-4`}>
+      <p style={{color:background === "Light" ? tcol : "#fff"}} className={` mx-auto max-w-115 leading-relaxed tracking-wide text-[18px] mt-4`}>
         {getSubstringBetween(heading, "Products", "&nbsp;")} <br />
         {heading?.substring(96)}
       </p>
@@ -105,7 +106,7 @@ const Integration = () => {
                 <h1 style={{color:  col}} className="text-left text-[22px] font-semibold">
                   {item.title}
                 </h1>
-                <p className="text-left text-[20px] text-gray-500 leading-relaxed tracking-wide font-medium">
+                <p style={{color: tcol }} className="text-left text-[20px] text-gray-500 leading-relaxed tracking-wide font-medium">
                   {item.text}
                 </p>
                 <a

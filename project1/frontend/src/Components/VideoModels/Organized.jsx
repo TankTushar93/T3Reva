@@ -5,7 +5,7 @@ import { lighten } from "polished";
 const Organized = () => {
   const { background } = useSidebar();
   const col = localStorage.getItem("color");
-
+   const tcol = localStorage.getItem('tcolor');
   const [isOpen, setIsOpen] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -86,9 +86,7 @@ const Organized = () => {
 
   if (loading) {
     return (
-      <div className="w-full flex justify-center items-center py-20 text-gray-500">
-        Loading...
-      </div>
+      <div className="w-full flex justify-center items-center py-20 text-gray-500"> </div>
     );
   }
 
@@ -158,7 +156,7 @@ const Organized = () => {
         </h3>
 
         <p
-          style={{ color: background === "Dark" ? "#fff" : "gray" }}
+          style={{ color: background === "Dark" ? "#fff" : tcol}}
           className="text-gray-500 leading-relaxed tracking-wide text-[15px] sm:text-[16px] md:text-[18px] max-w-[600px] mx-auto lg:mx-0"
         >
           {data.description}

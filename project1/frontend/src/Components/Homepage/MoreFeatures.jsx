@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useSidebar } from "../context/Sidebarcontext";
+import { useSidebar } from "../../context/Sidebarcontext";
 import { lighten } from "polished";
 
 const MoreFeatures = () => {
   const {background,layout,pageStripeVisible} = useSidebar();
   const col = localStorage.getItem('color');
    const gcol = localStorage.getItem('gcolor');
+    const tcol = localStorage.getItem('tcolor');
   const [heading, setHeading] = useState("");
   const [subtext, setSubtext] = useState("");
   const [features, setFeatures] = useState([]);
@@ -107,7 +108,7 @@ const MoreFeatures = () => {
       </h1>
 
       {/* Subtext */}
-      <p className={`${background === "Light" ? "text-gray-600" : "text-white"} mx-auto max-w-[440px] leading-relaxed tracking-wide text-[16px] sm:text-[18px] mt-4`}>
+      <p style={{color:background === "Light" ? tcol : "#fff"}} className={` mx-auto max-w-[440px] leading-relaxed tracking-wide text-[16px] sm:text-[18px] mt-4`}>
         {subtext.substring(0, 42)} <br />
         {subtext.substring(42)}
       </p>
@@ -128,7 +129,7 @@ const MoreFeatures = () => {
                   <p style={{color:  col}} className="text-[20px] pb-3 sm:text-[22px] font-semibold ">
                     {feature.title}
                   </p>
-                  <p className="text-[16px] sm:text-[19px] w-full leading-relaxed tracking-wide text-gray-500">
+                  <p style={{color: tcol }} className="text-[16px] sm:text-[19px] w-full leading-relaxed tracking-wide ">
                     {feature.text}
                   </p>
                 </div>
